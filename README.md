@@ -1,4 +1,4 @@
-# LLMs_Program_Synthesis_Eval
+# SimCoPilot
 A framework to evaluate LLMs' capability in source code completion. To thoroughly assess the performance of the Language Models in code generation
 tasks, we propose establishing various "evaluation checkpoints". At these checkpoints, the model’s
 output will be assessed based on how well it continues or complements the patterns established by
