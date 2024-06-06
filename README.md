@@ -3,8 +3,8 @@ SimCoPilot is a benchmark for evaluating LLMs as "copilot"-style interactive cod
 
 ## Dataset
 
-The data for this project can be found in the `combined_data.json.zip` file. Please note that the data and accompanying files are licensed under CC BY-NC-ND 4.0 and the code is licensed under the MIT License.
-<!-- 
+The data for this project can be found in the ` dataset/combined_data.json.zip` file. Please note that the data and accompanying files are licensed under CC BY-NC-ND 4.0 and the code is licensed under the MIT License.
+
 # Dependency Analyzer
 
 In addition to the initial evaluation metrics, we plan to refine our assessment by categorizing the
@@ -39,7 +39,6 @@ consider:
 | --------------- | ---------- | ---------------------------- |
 | **If-else Reasoning** | Involves understanding the logic body of if and else statements. | Assists in developing coherent logic flow in conditional structures. E.g., Suggesting complementary else logic based on the conditions specified in the if statement, or recommending elif branches for multiple conditions. |
 | **Define Stop Criteria** | Involves creating the stop condition for loops based on preceding code. | Analyzes the code to determine loop termination conditions. E.g., Suggesting a loop’s stop condition based on the initialization and usage of loop variables |
-| **Pattern-Based Completion** | Completing code based on recognized coding patterns or best practices. | Recognizes and suggests implementation based on established patterns. |
 
 ## Usage
 
@@ -50,7 +49,7 @@ consider:
 To install the Dependency Analyzer, clone this repository and run the setup script:
 
 ```bash
-git clone https://github.com/mj33rice/LLMs_Program_Synthesis_Eval.git
+git clone https://github.com/mj33rice/SimCoPilot.git
 pip install -r requirements.txt
 ```
 
@@ -108,19 +107,15 @@ Debug Mode
 
 `--code_gen_timeout`: This argument sets a timeout limit for the code generation process. It is used in the LLMs_gen_and_post_process function to prevent the code generation process from running indefinitely. 
 
-# Debug Mode
 
-```python
-CUDA_VISIBLE_DEVICES=2 python analyzer_demo_input_LNs.py ./example_code/Python/simplex_method/simplex_method.py ./example_code/Python/simplex_method/simplex_method.json --read_dependency_results --update_def_line --gen_model deepseek-coder-1.3b-instruct --code_gen_mode with_afterlines --skip_save_csv
-```
 # Post Processing
 ```python
-python -m helper_functions.update_post_process_and_eval ./Analysis_Results/Post_process/Check_pass_hist/no_instructions/Python/test_update/Image_Filtering/ > ./Analysis_Results/Post_process/Check_pass_hist/no_instructions/Python/test_update/stdout_post_process_Image_Filtering_May_23th 2> ./Analysis_Results/Post_process/Check_pass_hist/no_instructions/Python/test_update/stderr_post_process_Image_Filtering_May_23th&
+python -m helper_functions.update_post_process_and_eval ./PATH/to/result_folder
 ```
 
 ## Example Code Analysis
 
-For detailed examples of code analysis, please refer to the [Example Code Analysis Demo](./example_code/EXAMPLE.md). -->
+For detailed examples of code analysis, please refer to the [Example Code Analysis Demo](./example_code/EXAMPLE.md).
 
 ## Contributions
 
