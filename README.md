@@ -115,7 +115,7 @@ python -m helper_functions.update_post_process_and_eval ./PATH/to/result_folder
 
 ## Example Code Analysis
 
-For detailed examples of code analysis, please refer to the [Example Code Analysis Demo](./example_code/EXAMPLE.md).
+For detailed examples of code analysis, please refer to the [Example Code Analysis Demo](./example_code/README.md)
 
 ## Contributions
 
