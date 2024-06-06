@@ -1,6 +1,10 @@
 # SimCoPilot: Evaluating Models for Co-pilot-Style Code Generation
 SimCoPilot is a benchmark for evaluating LLMs as "copilot"-style interactive coding assistants, testing their ability to integrate and complete code within complex real-world software environments.
 
+## Dataset
+
+The data for this project can be found in the `combined_data.json.zip` file. Please note that the data and accompanying files are licensed under CC BY-NC-ND 4.0 and the code is licensed under the MIT License.
+<!-- 
 # Dependency Analyzer
 
 In addition to the initial evaluation metrics, we plan to refine our assessment by categorizing the
@@ -116,7 +120,7 @@ python -m helper_functions.update_post_process_and_eval ./Analysis_Results/Post_
 
 ## Example Code Analysis
 
-For detailed examples of code analysis, please refer to the [Example Code Analysis Demo](./example_code/EXAMPLE.md).
+For detailed examples of code analysis, please refer to the [Example Code Analysis Demo](./example_code/EXAMPLE.md). -->
 
 ## Contributions
 
