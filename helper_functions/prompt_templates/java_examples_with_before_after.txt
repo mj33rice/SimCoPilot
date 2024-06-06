@@ -1,0 +1,39 @@
+Example 1:
+Java example:
+Before:
+public class AreaCalculator {
+    public static double calculateArea(double length, double width) {
+        // Code for calculating area
+        // Given length and width, compute the area of a rectangle and store it in a variable 'area'.
+// --BEGIN MISSING CODE--
+double area = length * width;
+// --END MISSING CODE--
+After:
+return area;
+    }
+
+    public static void main(String[] args) {
+        System.out.println(calculateArea(5, 3));
+    }
+}
+
+Example 2:
+Java example:
+Before:
+public class DataProcessor {
+    public static List<Integer> processData(List<Integer> data) {
+        List<Integer> processedData = new ArrayList<>();
+        // Code to process data
+        // Given a list of data, process it by doubling each element and store the result in 'processedData'.
+// --BEGIN MISSING CODE--
+for (int d : data) { processedData.add(d * 2); }
+// --END MISSING CODE--
+After:
+return processedData;
+    }
+
+    public static void main(String's' args) {
+        List<Integer> data = Arrays.asList(1, 2, 3, 4);
+        System.out.println(processData(data));
+    }
+}

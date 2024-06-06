@@ -1,0 +1,14 @@
+Generate the {program_type} code necessary to seamlessly connect the provided 'before' and 'after' sections. {instruction_text}
+The code should logically continue from the 'before' section and connect smoothly to the 'after' section. 
+Ensure the output is a syntactically correct snippet of {program_type} code without any additional comments or text. 
+CRUCIALLY, when connecting the 'before' and 'after' sections, ensure all brackets, parentheses, and curly braces are properly paired and closed. Pay special attention to existing brackets, parentheses, and curly braces in the 'before' and 'after' sections. 
+IMPORTANTLY, generate code that does not overlap with or duplicate any code from the 'before' and 'after' sections.
+
+{examples}
+
+Your Task:
+{before_section}
+{begin_missing_code}
+[Insert only the syntactically correct {program_type} syntax that connects seamlessly, does not overlap with, and does not duplicate functionality from the before or after sections. No comments or additional text.]
+{end_missing_code}
+{after_section}

@@ -1,0 +1,21 @@
+{
+    "Python": {
+        "RL_Motion_Planning": "./example_code/Python/RL_Motion_Planning/RL_Motion_Planning",
+        "simplex_method": "./example_code/Python/simplex_method/simplex_method",
+        "Image_Transformation": "./example_code/Python/Image_Transformation/Image_Transformation",
+        "Credit_Scoring_Fairness": "./example_code/Python/Credit_Scoring_Fairness/Credit_Scoring_Fairness",
+        "Image_Filtering": "./example_code/Python/Image_Filtering/Image_Filtering",
+        "GAN_model": "./example_code/Python/GAN_model/GAN_model",
+        "Timeseries_Clustering": "./example_code/Python/Timeseries_Clustering/Timeseries_Clustering"
+    },
+    "Java": {
+        "FactorizationTester": "./example_code/Java/COMP215/A0/Test/FactorizationTester",
+        "CounterTester": "./example_code/Java/COMP215/A1/Test/CounterTester",
+        "DoubleVectorTester": "./example_code/Java/COMP215/A2/Test/DoubleVectorTester",
+        "SparseArrayTester": "./example_code/Java/COMP215/A3/Test/SparseArrayTester",
+        "DoubleMatrixTester": "./example_code/Java/COMP215/A4/Test/DoubleMatrixTester",
+        "RNGTester": "./example_code/Java/COMP215/A5/Test/RNGTester",
+        "TopKTester": "./example_code/Java/COMP215/A6/Test/TopKTester",
+        "MTreeTester": "./example_code/Java/COMP215/A7/Test/MTreeTester"
+    }
+}

@@ -1,0 +1,197 @@
+reason_category,usage_line
+Define Stop Criteria,32
+Loop Body,33
+Loop Body,34
+If Condition,35
+Loop Body,35
+If Body,36
+Loop Body,36
+Loop Body,37
+Loop Body,38
+Define Stop Criteria,219
+Loop Body,220
+Loop Body,221
+Define Stop Criteria,236
+Loop Body,237
+Loop Body,238
+Define Stop Criteria,244
+Loop Body,245
+Loop Body,246
+Loop Body,247
+Loop Body,248
+If Condition,254
+If Body,255
+If Body,256
+Define Stop Criteria,259
+Loop Body,260
+Loop Body,261
+Loop Body,262
+Loop Body,263
+If Condition,269
+If Body,270
+If Body,271
+If Condition,278
+If Body,279
+If Body,280
+Define Stop Criteria,326
+Loop Body,327
+Loop Body,328
+Loop Body,329
+Loop Body,330
+Loop Body,331
+Loop Body,332
+Define Stop Criteria,342
+Loop Body,343
+Loop Body,344
+Loop Body,345
+If Condition,354
+If Body,355
+If Body,356
+Define Stop Criteria,359
+Loop Body,360
+Loop Body,361
+Loop Body,362
+Loop Body,363
+Loop Body,364
+If Condition,377
+If Body,378
+If Body,379
+If Condition,383
+If Body,384
+Else Reasoning,385
+Else Reasoning,386
+Else Reasoning,387
+If Condition,393
+If Body,394
+If Body,395
+If Condition,426
+If Body,427
+If Body,428
+If Condition,428
+If Body,429
+Else Reasoning,430
+If Body,430
+Else Reasoning,431
+If Body,431
+Define Stop Criteria,449
+Loop Body,450
+Loop Body,451
+Loop Body,452
+If Condition,452
+Loop Body,453
+If Body,453
+Loop Body,454
+If Body,454
+Loop Body,455
+If Body,455
+Loop Body,456
+Loop Body,457
+Loop Body,458
+Loop Body,459
+Loop Body,460
+Loop Body,461
+Loop Body,462
+Loop Body,463
+Loop Body,464
+Loop Body,465
+Define Stop Criteria,482
+Loop Body,483
+Loop Body,484
+Loop Body,485
+Loop Body,486
+Loop Body,487
+Loop Body,488
+Loop Body,489
+Loop Body,490
+Define Stop Criteria,494
+Loop Body,495
+Loop Body,496
+Loop Body,497
+Define Stop Criteria,497
+Loop Body,498
+Loop Body,499
+If Condition,499
+Loop Body,500
+If Body,500
+Loop Body,501
+Else Reasoning,501
+Loop Body,502
+Else Reasoning,502
+Loop Body,503
+Else Reasoning,503
+Loop Body,504
+Loop Body,505
+Loop Body,506
+Loop Body,507
+Loop Body,508
+Define Stop Criteria,522
+Loop Body,523
+Loop Body,524
+Define Stop Criteria,547
+Loop Body,548
+Loop Body,549
+Define Stop Criteria,555
+Loop Body,556
+Loop Body,557
+Define Stop Criteria,610
+Loop Body,611
+Loop Body,612
+Define Stop Criteria,624
+Loop Body,625
+Loop Body,626
+Define Stop Criteria,638
+Loop Body,639
+Loop Body,640
+Loop Body,641
+Define Stop Criteria,653
+Loop Body,654
+Loop Body,655
+Loop Body,656
+Define Stop Criteria,707
+Loop Body,708
+Loop Body,709
+Loop Body,710
+Loop Body,711
+Loop Body,712
+Loop Body,713
+Loop Body,714
+Loop Body,715
+Define Stop Criteria,718
+Loop Body,719
+Loop Body,720
+Loop Body,721
+Loop Body,722
+Loop Body,723
+Loop Body,724
+Loop Body,725
+Define Stop Criteria,798
+Loop Body,799
+Loop Body,800
+Define Stop Criteria,803
+Loop Body,804
+Loop Body,805
+Loop Body,806
+Define Stop Criteria,806
+Loop Body,807
+Loop Body,808
+Loop Body,809
+Loop Body,810
+Loop Body,811
+Loop Body,812
+Loop Body,813
+Loop Body,814
+Define Stop Criteria,818
+Loop Body,819
+Loop Body,820
+Loop Body,821
+Loop Body,822
+Loop Body,823
+Loop Body,824
+Define Stop Criteria,827
+Loop Body,828
+Loop Body,829
+Loop Body,830
+Loop Body,831
+Loop Body,832
+Loop Body,833
+Loop Body,834

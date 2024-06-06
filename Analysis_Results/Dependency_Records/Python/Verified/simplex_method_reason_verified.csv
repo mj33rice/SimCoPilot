@@ -1,0 +1,94 @@
+reason_category,usage_line
+Generator_Expressions,4
+List_Comprehension,8
+List_Comprehension,12
+List_Comprehension,16
+List_Comprehension,20
+Generator_Expressions,26
+If Condition,30
+If Body,31
+Lambda_Expressions,32
+List_Comprehension,37
+If Condition,46
+If Body,47
+If Body,48
+If Condition,50
+Pattern-Based Completion,50
+If Body,51
+If Body,52
+If Condition,55
+Pattern-Based Completion,55
+If Body,56
+If Condition,59
+If Body,60
+List_Comprehension,60
+If Condition,63
+If Body,64
+Define Stop Criteria,76
+Loop Body,77
+Loop Body,78
+List_Comprehension,78
+Loop Body,79
+Loop Body,80
+Loop Body,81
+Loop Body,82
+List_Comprehension,96
+List_Comprehension,97
+Define Stop Criteria,99
+Loop Body,100
+Define Stop Criteria,104
+Loop Body,105
+Loop Body,106
+List_Comprehension,106
+Loop Body,107
+Lambda_Expressions,107
+Loop Body,108
+Loop Body,109
+Loop Body,110
+If Condition,110
+Generator_Expressions,110
+Loop Body,111
+If Body,111
+Loop Body,112
+Loop Body,113
+Loop Body,114
+List_Comprehension,114
+Loop Body,115
+Loop Body,116
+If Condition,116
+Loop Body,117
+If Body,117
+Loop Body,118
+Loop Body,119
+Loop Body,120
+Lambda_Expressions,120
+Loop Body,121
+Loop Body,122
+Loop Body,123
+Loop Body,124
+Loop Body,125
+Loop Body,126
+Loop Body,127
+Loop Body,128
+Loop Body,129
+Loop Body,130
+List_Comprehension,130
+Loop Body,131
+Loop Body,132
+Loop Body,133
+Define Stop Criteria,133
+Loop Body,134
+If Condition,134
+Loop Body,135
+List_Comprehension,135
+If Body,135
+Loop Body,136
+List_Comprehension,136
+If Body,136
+Loop Body,137
+Loop Body,138
+Define Stop Completion,138
+Loop Body,139
+Loop Body,140
+List_Comprehension,146
+List_Comprehension,149

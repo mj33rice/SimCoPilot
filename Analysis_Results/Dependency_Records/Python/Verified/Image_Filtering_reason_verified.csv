@@ -1,0 +1,63 @@
+reason_category,usage_line
+If Condition,68
+If Body,69
+If Condition,75
+If Body,76
+Else Reasoning,77
+Else Reasoning,78
+Define Stop Criteria,80
+Define Stop Criteria,81
+Loop Body,82
+Define Stop Criteria,118
+Loop Body,119
+Loop Body,120
+Define Stop Criteria,125
+Loop Body,126
+Loop Body,127
+Define Stop Criteria,131
+Loop Body,132
+Loop Body,133
+Loop Body,134
+Define Stop Criteria,137
+Loop Body,138
+Loop Body,139
+Loop Body,140
+Define Stop Criteria,144
+Loop Body,145
+Loop Body,146
+Loop Body,147
+Define Stop Criteria,151
+Loop Body,152
+Loop Body,153
+Define Stop Criteria,171
+Loop Body,172
+Define Stop Criteria,180
+Loop Body,181
+Loop Body,182
+Define Stop Criteria,184
+Loop Body,185
+Loop Body,186
+Loop Body,187
+Define Stop Criteria,191
+Loop Body,192
+Loop Body,193
+Loop Body,194
+Define Stop Criteria,213
+Loop Body,214
+Loop Body,215
+Loop Body,216
+If Condition,216
+If Body, 217
+Loop Body,217
+Loop Body,218
+If Body, 218
+Loop Body,219
+Loop Body,220
+Loop Body,221
+Define Stop Criteria,256
+Loop Body,257
+Loop Body,258
+Loop Body,259
+Loop Body,260
+Loop Body,261
+Loop Body,262

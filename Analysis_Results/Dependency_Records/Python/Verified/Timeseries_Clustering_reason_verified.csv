@@ -1,0 +1,66 @@
+reason_category,usage_line
+Define Stop Criteria,50
+Loop Body,51
+Loop Body,52
+Define Stop Criteria,92
+Loop Body,93
+Loop Body,94
+Loop Body,95
+Loop Body,96
+Loop Body,97
+Lambda_Expressions,102
+Define Stop Criteria,110
+Loop Body,111
+Loop Body,112
+Define Stop Criteria,119
+Loop Body,120
+Loop Body,121
+Loop Body,122
+Loop Body,123
+If Condition,123
+Loop Body,124
+If Body,124
+Loop Body,125
+If Body,125
+Loop Body,126
+If Body,126
+Loop Body,127
+If Body,127
+Loop Body,128
+Loop Body,129
+If Condition,129
+Loop Body,130
+If Body,130
+Define Stop Criteria,142
+Loop Body,143
+Loop Body,144
+Lambda_Expressions,148
+Define Stop Criteria,152
+Loop Body,153
+Loop Body,154
+Define Stop Criteria,161
+Loop Body,162
+Loop Body,163
+Loop Body,164
+Loop Body,165
+If Condition,165
+Loop Body,166
+If Body,166
+Loop Body,167
+If Body,167
+Loop Body,168
+If Body,168
+Loop Body,169
+If Body,169
+Loop Body,170
+Loop Body,171
+If Condition,171
+Loop Body,172
+If Body,172
+Define Stop Criteria,182
+Loop Body,183
+Loop Body,184
+Loop Body,185
+If Condition,185
+Loop Body,186
+If Body,186

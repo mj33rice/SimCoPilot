@@ -1,0 +1,21 @@
+You will be generating {program_type} code to seamlessly connect a "before" code section to an "after" code section.{instruction_text}
+
+Here is the before code section:
+<before_code>
+{before_section}
+</before_code>
+
+And here is the after code section:  
+<after_code>
+{after_section}
+</after_code>
+
+Please generate ONLY the {program_type} code that goes in between these two sections to connect them. The code you generate must meet these requirements:
+
+- It must be syntactically correct {program_type} code that flows logically from the before section to the after section
+- It must use correct {program_type} indentation 
+- It must ensure any brackets, parentheses or curly braces are properly paired and closed, taking into account any existing ones in the before and after sections
+- It must not include any code comments or additional explanatory text
+- It must not duplicate any code or functionality from the before and after sections
+{Python_instruction}
+Generate your code inside {begin_missing_code} and {end_missing_code} tags.

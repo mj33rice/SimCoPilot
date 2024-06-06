@@ -1,0 +1,29 @@
+Example 1:
+Python example:
+Before:
+def calculate_area(length, width):
+    # Code for calculating area
+    # Given length and width, compute the area of a rectangle and store it in a variable 'area'.
+# --BEGIN MISSING CODE--
+area = length * width
+# --END MISSING CODE--
+After:
+return area
+
+print(calculate_area(5, 3))
+
+Example 2:
+Python example:
+Before:
+def process_data(data):
+    # Code to process data
+    processed_data = None
+    # Given a list of data, process it by doubling each element and store the result in 'processed_data'.
+# --BEGIN MISSING CODE--
+processed_data = [d * 2 for d in data]
+# --END MISSING CODE--
+After:
+return processed_data
+
+data = [1, 2, 3, 4]
+print(process_data(data))

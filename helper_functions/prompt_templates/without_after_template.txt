@@ -1,0 +1,16 @@
+Generate the {program_type} code necessary based on the provided 'before' section. {instruction_text}
+The code should logically continue from the 'before' section. 
+Ensure the output is a syntactically correct snippet of {program_type} code without any additional comments or text. 
+CRUCIALLY, ensure all brackets, parentheses, and curly braces are properly paired and closed. Pay special attention to existing brackets, parentheses, and curly braces in the 'before' section.
+
+{examples}
+
+Your Task:
+{before_section}
+{begin_missing_code}
+[Insert only the syntactically correct {program_type} syntax to complete the innermost incomplete method, function, loop, if-statement, or self-contained block of code.
+Ensure your code is concise and does not over-generate beyond the scope of the current logic component.
+Ensure your code does not include redundant operations or duplicate logic that might be expected to appear elsewhere in a complete program.
+CRUCIALLY, ensure all brackets, parentheses, and curly braces are properly paired and closed. Pay special attention to existing brackets, parentheses, and curly braces in the 'before' section.
+No comments or additional text.]
+{end_missing_code}

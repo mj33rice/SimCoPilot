@@ -1,0 +1,39 @@
+reason_category,usage_line
+Generator_Expressions,4
+List_Comprehension,8
+List_Comprehension,12
+List_Comprehension,16
+List_Comprehension,20
+Generator_Expressions,26
+If-else Reasoning,30
+Lambda_Expressions,32
+List_Comprehension,37
+If-else Reasoning,46
+If-else Reasoning,50
+Pattern-Based Completion,50
+If-else Reasoning,55
+Pattern-Based Completion,55
+If-else Reasoning,59
+List_Comprehension,60
+If-else Reasoning,63
+Define Stop Criteria,76
+List_Comprehension,78
+List_Comprehension,96
+List_Comprehension,97
+Define Stop Criteria,99
+Define Stop Criteria,104
+List_Comprehension,106
+Lambda_Expressions,107
+If-else Reasoning,110
+Generator_Expressions,110
+List_Comprehension,114
+If-else Reasoning,116
+Lambda_Expressions,120
+List_Comprehension,130
+Define Stop Criteria,133
+If-else Reasoning,134
+List_Comprehension,135
+List_Comprehension,136
+Define Stop Criteria,138
+List_Comprehension,146
+List_Comprehension,149
