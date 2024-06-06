@@ -1,8 +1,5 @@
-# SimCoPilot
-A framework to evaluate LLMs' capability in source code completion. To thoroughly assess the performance of the Language Models in code generation
-tasks, we propose establishing various "evaluation checkpoints". At these checkpoints, the model’s
-output will be assessed based on how well it continues or complements the patterns established by
-the preceding code or achieves the functionality specified by the predefined criteria.
+# SimCoPilot: Evaluating Models for Co-pilot-Style Code Generation
+SimCoPilot is a benchmark for evaluating LLMs as "copilot"-style interactive coding assistants, testing their ability to integrate and complete code within complex real-world software environments.
 
 # Dependency Analyzer
 
