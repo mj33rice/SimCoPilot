@@ -1,0 +1,265 @@
+{
+    "@context": {
+      "@language": "en",
+      "@vocab": "https://schema.org/",
+      "citeAs": "cr:citeAs",
+      "column": "cr:column",
+      "conformsTo": "dct:conformsTo",
+      "cr": "http://mlcommons.org/croissant/",
+      "data": {
+        "@id": "cr:data",
+        "@type": "@json"
+      },
+      "dataBiases": "cr:dataBiases",
+      "dataCollection": "cr:dataCollection",
+      "dataType": {
+        "@id": "cr:dataType",
+        "@type": "@vocab"
+      },
+      "dct": "http://purl.org/dc/terms/",
+      "extract": "cr:extract",
+      "field": "cr:field",
+      "fileProperty": "cr:fileProperty",
+      "fileObject": "cr:fileObject",
+      "fileSet": "cr:fileSet",
+      "format": "cr:format",
+      "includes": "cr:includes",
+      "isLiveDataset": "cr:isLiveDataset",
+      "jsonPath": "cr:jsonPath",
+      "key": "cr:key",
+      "md5": "cr:md5",
+      "parentField": "cr:parentField",
+      "path": "cr:path",
+      "personalSensitiveInformation": "cr:personalSensitiveInformation",
+      "recordSet": "cr:recordSet",
+      "references": "cr:references",
+      "regex": "cr:regex",
+      "repeated": "cr:repeated",
+      "replace": "cr:replace",
+      "sc": "https://schema.org/",
+      "separator": "cr:separator",
+      "source": "cr:source",
+      "subField": "cr:subField",
+      "transform": "cr:transform"
+    },
+    "@type": "sc:Dataset",
+    "distribution": [
+      {
+        "@type": "cr:FileObject",
+        "@id": "repo",
+        "name": "repo",
+        "description": "The Hugging Face git repository.",
+        "contentUrl": "https://huggingface.co/datasets/mj33/SimCoPilot/tree/refs%2Fconvert%2Fparquet",
+        "encodingFormat": "git+https",
+        "sha256": "https://github.com/mlcommons/croissant/issues/80"
+      },
+      {
+        "@type": "cr:FileSet",
+        "@id": "parquet-files-for-config-default",
+        "name": "parquet-files-for-config-default",
+        "description": "The underlying Parquet files as converted by Hugging Face (see: https://huggingface.co/docs/datasets-server/parquet).",
+        "containedIn": {
+          "@id": "repo"
+        },
+        "encodingFormat": "application/x-parquet",
+        "includes": "default/*/*.parquet"
+      }
+    ],
+    "recordSet": [
+      {
+        "@type": "cr:RecordSet",
+        "@id": "default",
+        "name": "default",
+        "description": "mj33/SimCoPilot - 'default' subset",
+        "field": [
+          {
+            "@type": "cr:Field",
+            "@id": "default/task_type",
+            "name": "default/task_type",
+            "description": "Column 'task_type' from the Hugging Face parquet file.",
+            "dataType": "sc:Text",
+            "source": {
+              "fileSet": {
+                "@id": "parquet-files-for-config-default"
+              },
+              "extract": {
+                "column": "task_type"
+              }
+            }
+          },
+          {
+            "@type": "cr:Field",
+            "@id": "default/code_task",
+            "name": "default/code_task",
+            "description": "Column 'code_task' from the Hugging Face parquet file.",
+            "dataType": "sc:Text",
+            "source": {
+              "fileSet": {
+                "@id": "parquet-files-for-config-default"
+              },
+              "extract": {
+                "column": "code_task"
+              }
+            }
+          },
+          {
+            "@type": "cr:Field",
+            "@id": "default/start_line",
+            "name": "default/start_line",
+            "description": "Column 'start_line' from the Hugging Face parquet file.",
+            "dataType": "sc:Integer",
+            "source": {
+              "fileSet": {
+                "@id": "parquet-files-for-config-default"
+              },
+              "extract": {
+                "column": "start_line"
+              }
+            }
+          },
+          {
+            "@type": "cr:Field",
+            "@id": "default/end_line",
+            "name": "default/end_line",
+            "description": "Column 'end_line' from the Hugging Face parquet file.",
+            "dataType": "sc:Integer",
+            "source": {
+              "fileSet": {
+                "@id": "parquet-files-for-config-default"
+              },
+              "extract": {
+                "column": "end_line"
+              }
+            }
+          },
+          {
+            "@type": "cr:Field",
+            "@id": "default/before",
+            "name": "default/before",
+            "description": "Column 'before' from the Hugging Face parquet file.",
+            "dataType": "sc:Text",
+            "source": {
+              "fileSet": {
+                "@id": "parquet-files-for-config-default"
+              },
+              "extract": {
+                "column": "before"
+              }
+            }
+          },
+          {
+            "@type": "cr:Field",
+            "@id": "default/between",
+            "name": "default/between",
+            "description": "Column 'between' from the Hugging Face parquet file.",
+            "dataType": "sc:Text",
+            "source": {
+              "fileSet": {
+                "@id": "parquet-files-for-config-default"
+              },
+              "extract": {
+                "column": "between"
+              }
+            }
+          },
+          {
+            "@type": "cr:Field",
+            "@id": "default/after",
+            "name": "default/after",
+            "description": "Column 'after' from the Hugging Face parquet file.",
+            "dataType": "sc:Text",
+            "source": {
+              "fileSet": {
+                "@id": "parquet-files-for-config-default"
+              },
+              "extract": {
+                "column": "after"
+              }
+            }
+          },
+          {
+            "@type": "cr:Field",
+            "@id": "default/reason_categories_output",
+            "name": "default/reason_categories_output",
+            "description": "Column 'reason_categories_output' from the Hugging Face parquet file.",
+            "dataType": "sc:Text",
+            "source": {
+              "fileSet": {
+                "@id": "parquet-files-for-config-default"
+              },
+              "extract": {
+                "column": "reason_categories_output"
+              }
+            }
+          },
+          {
+            "@type": "cr:Field",
+            "@id": "default/horizon_categories_output",
+            "name": "default/horizon_categories_output",
+            "description": "Column 'horizon_categories_output' from the Hugging Face parquet file.",
+            "dataType": "sc:Text",
+            "source": {
+              "fileSet": {
+                "@id": "parquet-files-for-config-default"
+              },
+              "extract": {
+                "column": "horizon_categories_output"
+              }
+            }
+          },
+          {
+            "@type": "cr:Field",
+            "@id": "default/reason_freq_analysis",
+            "name": "default/reason_freq_analysis",
+            "description": "Column 'reason_freq_analysis' from the Hugging Face parquet file.",
+            "dataType": "sc:Text",
+            "source": {
+              "fileSet": {
+                "@id": "parquet-files-for-config-default"
+              },
+              "extract": {
+                "column": "reason_freq_analysis"
+              }
+            }
+          },
+          {
+            "@type": "cr:Field",
+            "@id": "default/horizon_freq_analysis",
+            "name": "default/horizon_freq_analysis",
+            "description": "Column 'horizon_freq_analysis' from the Hugging Face parquet file.",
+            "dataType": "sc:Text",
+            "source": {
+              "fileSet": {
+                "@id": "parquet-files-for-config-default"
+              },
+              "extract": {
+                "column": "horizon_freq_analysis"
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "conformsTo": "http://mlcommons.org/croissant/1.0",
+    "name": "SimCoPilot",
+    "description": "\n\t\n\t\t\n\t\n\t\n\t\tDataset Card for Dataset Name\n\t\n\nSimCoPilot is a benchmark for evaluating LLMs to perform as a \"copilot\"-style, interactive coding assistant.\n\n\t\n\t\t\n\t\n\t\n\t\tDataset Details\n\t\n\n\n\t\n\t\t\n\t\n\t\n\t\tDataset Description\n\t\n\nSimCoPilot is a benchmark for evaluating LLMs to perform as a \"copilot\"-style, interactive coding assistant, testing their ability to add and complete code in complex real-world software environments and analyzing how LLMs manage different code dependencies and logic… See the full description on the dataset page: https://huggingface.co/datasets/mj33/SimCoPilot.",
+    "alternateName": [
+      "mj33/SimCoPilot"
+    ],
+    "creator": {
+      "@type": "Person",
+      "name": "Charles Jiang",
+      "url": "https://huggingface.co/mj33"
+    },
+    "keywords": [
+      "text-generation",
+      "10M\u003Cn\u003C100M",
+      "English",
+      "cc-by-nc-nd-4.0",
+      "Croissant",
+      "code",
+      "🇺🇸 Region: US"
+    ],
+    "license": "https://choosealicense.com/licenses/cc-by-nc-nd-4.0/",
+    "url": "https://huggingface.co/datasets/mj33/SimCoPilot"
+  }
