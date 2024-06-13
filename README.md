@@ -3,7 +3,7 @@ SimCoPilot is a benchmark for evaluating LLMs as "copilot"-style interactive cod
 
 ## Dataset
 
-The data for this project can be found in the ` dataset/combined_data.json.zip` file. Please note that the data and accompanying files are licensed under CC BY-NC-ND 4.0 and the code is licensed under the MIT License.
+The data for this project can be found in the ` dataset/SimCoPilot.csv.zip` file. Please note that the data and accompanying files are licensed under CC BY-NC-ND 4.0 and the code is licensed under the MIT License.
 
 # Dependency Analyzer
 
