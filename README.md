@@ -1,46 +1,18 @@
 # SimCoPilot: Evaluating Models for Co-pilot-Style Code Generation
 SimCoPilot is a benchmark for evaluating LLMs as "copilot"-style interactive coding assistants, testing their ability to integrate and complete code within complex real-world software environments.
 
+![Figure 1: Workflow for each of the 1,163 programming tasks in SIMCOPILOT.](figures/Workflow.png "Figure 1: Workflow for each of the 1,163 programming tasks in SIMCOPILOT.")
 ## Dataset
 
-The data for this project can be found in the ` dataset/SimCoPilot.csv.zip` file. Please note that the data and accompanying files are licensed under CC BY-NC-ND 4.0 and the code is licensed under the MIT License.
 
-# Dependency Analyzer
+The data for this project can be found in the ` dataset/SimCoPilot.csv.zip` file. 
 
-In addition to the initial evaluation metrics, we plan to refine our assessment by categorizing the
-"evaluation checkpoints" based on the length of code dependencies and logic component of the
-to-complete code.
+**Hosting, Licensing, and Maintenance Plan.**
+- **Dataset and Metadata Access.** The dataset and its associated metadata, documented using the Croissant metadata framework, can be viewed and downloaded at [https://huggingface.co/datasets/mj33/SimCoPilot](https://huggingface.co/datasets/mj33/SimCoPilot).
+- **Licensing:** The data is shared under the [CC BY-NC-ND 4.0](https://creativecommons.org/licenses/by-nc-nd/4.0/) and code is licensed under MIT License.
+- **Maintenance Plan:** We commit to maintaining the dataset with regular updates and revisions to correct any issues and integrate new contributions. Updates will be documented in the repository's release notes section.
 
-## Features
-
-- **Dependency Length Analysis**: Evaluates dependencies based on the length of code preceding a given point, quantifying the distance between the definitions of variables, functions, or classes and their respective calls or implementations in the subsequent sections of code, quantified by the number of lines.
-- **Reason and Horizon Categories**: Introduces two crucial analysis categories to better assess
-dependency impact and logic handling:
-  - **Horizon Category**: Assesses dependency lengths ranging from "Short-Range" to "Cross-Module".
-  - **Reason Category**: Evaluates conditional logic, loop terminations, pattern usage, and context awareness.
-
-These categories will offer a comprehensive
-analysis of the Language Models’ code synthesis capabilities. Here are some potential categories to
-consider:
-
-### Horizon Category
-
-| Horizon Category | Definition | Characteristics and Examples |
-| ---------------- | ---------- | ---------------------------- |
-| **Short-Range** | Involves dependencies within a few lines of code. | Local variables, immediate function calls. |
-| **Medium-Range** | Covers dependencies over a moderate number of lines in the same file. | References to class variables, methods defined earlier. |
-| **Long-Range** | Dependencies extend over a large portion of code. | Understanding of the project structure, including distant components. |
-| **Cross-Module** | Relies on elements defined in different modules or libraries. | Requires understanding of external dependencies and library APIs. |
-
-
-### Reason Category
-
-| Reason Category | Definition | Characteristics and Examples |
-| --------------- | ---------- | ---------------------------- |
-| **If-else Reasoning** | Involves understanding the logic body of if and else statements. | Assists in developing coherent logic flow in conditional structures. E.g., Suggesting complementary else logic based on the conditions specified in the if statement, or recommending elif branches for multiple conditions. |
-| **Define Stop Criteria** | Involves creating the stop condition for loops based on preceding code. | Analyzes the code to determine loop termination conditions. E.g., Suggesting a loop’s stop condition based on the initialization and usage of loop variables |
-
-## Usage
+## 🚀 Getting Started
 
 1. Clone the repository.
 2. Install necessary dependencies.
@@ -53,8 +25,10 @@ git clone https://github.com/mj33rice/SimCoPilot.git
 pip install -r requirements.txt
 ```
 
-## OpenAI & Anthropic modles setup
+<details>
+<summary>OpenAI & Anthropic modles setup</summary>
 1. Install the necessary Python packages:
+
 ```bash
 pip install anthropic
 ```
@@ -81,17 +55,8 @@ nano ~/.zshrc
 ```bash
 source ~/.bash_profile (or source ~/.zshrc)
 ```
+</details> 
 
-## Run from the Bash Script
-```bash
-#For Python tasks
-chmod +x run_python_paral.sh
-./run_python_paral.sh
-
-#For Java tasks
-chmod +x run_java_paral.sh
-./run_java_paral.sh
-```
 
 ## How to Run 
 ```python
@@ -106,16 +71,28 @@ In the above command:
 Debug Mode
 
 `--code_gen_timeout`: This argument sets a timeout limit for the code generation process. It is used in the LLMs_gen_and_post_process function to prevent the code generation process from running indefinitely. 
+<details>
+<summary>Run from the Bash Script</summary>
 
+```bash
+#For Python tasks
+chmod +x run_python_paral.sh
+./run_python_paral.sh
+
+#For Java tasks
+chmod +x run_java_paral.sh
+./run_java_paral.sh
+```
+</details>
 
 # Post Processing
 ```python
 python -m helper_functions.update_post_process_and_eval ./PATH/to/result_folder
 ```
 
-## Example Code Analysis
+## Example of Post-Processing
 
-For detailed examples of code analysis, please refer to the [Example Code Analysis Demo](./example_code/README.md)
+For detailed examples of code Post-Processing, please refer to the [Example Code Analysis Demo](./example_code/README.md)
 
 ## Contributions
 
@@ -123,4 +100,4 @@ Contributions to enhance the tool's capabilities, including support for more lan
 
 ## License
 
-This project is licensed under [SPECIFY LICENSE] - see the LICENSE file for details.
+The data is shared under the [CC BY-NC-ND 4.0](https://creativecommons.org/licenses/by-nc-nd/4.0/) and code is licensed under MIT License.
