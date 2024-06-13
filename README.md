@@ -1,7 +1,9 @@
 # SimCoPilot: Evaluating Models for Co-pilot-Style Code Generation
 SimCoPilot is a benchmark for evaluating LLMs as "copilot"-style interactive coding assistants, testing their ability to integrate and complete code within complex real-world software environments.
 
-![Figure 1: Workflow for each of the 1,163 programming tasks in SIMCOPILOT.](figures/Workflow.png "Figure 1: Workflow for each of the 1,163 programming tasks in SIMCOPILOT.")
+![Figure 1: Workflow for each of the 1,163 programming tasks in SIMCOPILOT.](figures/Workflow.png)
+
+*Figure 1: Workflow for each of the 1,163 programming tasks in SimCoPilot.*
 ## Dataset
 
 
@@ -107,7 +109,15 @@ python -m helper_functions.update_post_process_and_eval ./PATH/to/result_folder
 
 ## Example of Post-Processing
 
-For detailed examples of code Post-Processing, please refer to the [Example Code Analysis Demo](./example_code/README.md)
+For detailed examples of code Post-Processing, please refer to the figure below:
+
+![Figure 2: Example infill task from SIMCOPILOTP and step-by-step post-processing demonstration.](figures/Python_infill_post_processing_example.png)
+
+*Figure 2: Example infill task from SimCoPilotP and step-by-step post-processing demonstration.*
+
+![Figure 3: Example infill task from SIMCOPILOTP and step-by-step post-processing demonstration.](figures/Java_infill_post_processing_example.png)
+
+*Figure 3: Example completion task from SimCoPilotJ and step-by-step post-processing demonstration*
 
 ## Contributions
 
