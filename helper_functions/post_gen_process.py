@@ -98,71 +98,6 @@ def auto_bracket_matcher(before_lines, between_lines, after_lines):
             between_lines = remove_extra_brackets(between_lines, brackets[bracket], close_brackets - open_brackets)
     return between_lines
 
-####################
-# def auto_bracket_matcher(before_lines, between_lines, after_lines):
-#     # Define the pairs of brackets
-#     brackets = {'{': '}', '[': ']', '(': ')'}
-
-#     # Concatenate the lines
-#     total_lines = before_lines + between_lines + after_lines
-
-#     # Initialize a dictionary to count the brackets
-#     bracket_counts = {bracket: [0, 0] for bracket in brackets}
-
-#     # Count the number of open and close brackets
-#     for char in total_lines:
-#         if char in brackets:
-#             bracket_counts[char][0] += 1
-#         elif char in brackets.values():
-#             for bracket, close_bracket in brackets.items():
-#                 if char == close_bracket:
-#                     bracket_counts[bracket][1] += 1
-
-#     # Add or remove brackets from between_lines as necessary
-#     for bracket, counts in bracket_counts.items():
-#         open_brackets, close_brackets = counts
-#         if open_brackets > close_brackets:
-#             between_lines += brackets[bracket] * (open_brackets - close_brackets)
-#         elif open_brackets < close_brackets:
-#             between_lines = between_lines.rsplit(brackets[bracket], close_brackets - open_brackets)[0]
-
-#     return between_lines
-
-
-# def auto_bracket_matcher(before_lines, between_lines, after_lines):
-#     # Define the pairs of brackets
-#     brackets = {'{': '}', '[': ']', '(': ')'}
-#     reverse_brackets = {v: k for k, v in brackets.items()}
-
-#     # Concatenate the lines
-#     total_lines = before_lines + between_lines + after_lines
-
-#     # Initialize a stack to match the brackets
-#     stack = []
-
-#     # Match the brackets using the stack
-#     for char in total_lines:
-#         if char in brackets:
-#             stack.append(char)
-#         elif char in reverse_brackets:
-#             if stack and stack[-1] == reverse_brackets[char]:
-#                 stack.pop()
-#             else:
-#                 stack.append(char)
-
-#     # Add or remove brackets from between_lines as necessary
-#     for bracket in stack:
-#         if bracket in brackets:
-#             between_lines += brackets[bracket]
-#         else:
-#             # Remove the last occurrence of the closing bracket
-#             closing_bracket = reverse_brackets[bracket]
-#             last_index = between_lines.rfind(closing_bracket)
-#             if last_index != -1:
-#                 between_lines = between_lines[:last_index] + between_lines[last_index + 1:]
-
-#     return between_lines
-
 def auto_indent(before_lines, between, after_lines, tab_indent=4):
     """
     Clean the generated 'between' code and merge it with 'before' and 'after' parts.
@@ -441,11 +376,6 @@ def clean_code(code, program_type, check_brackets=False, keep_comments=False, re
         if in_block_comment or not is_code:
             continue
     
-        # # Exclude lines that are explicitly comments (outside of block comment checks)
-        # if (program_type == "Python" and stripped_line.startswith('#')) or \
-        #    (program_type == "Java" and stripped_line.startswith('//')):
-        #     continue
-
         in_block_comment = next_in_block_comment
 
         processed_lines.append(line)
@@ -489,13 +419,6 @@ def normalize_line(line):
     Normalize a line by stripping leading/trailing spaces and reducing all internal spaces to single spaces.
     """
     return ' '.join(line.split())
-
-# def is_code_comment(line):
-#     # Placeholder function to determine if a line is a code comment.
-#     in_block_comment = False
-#     is_code, in_block_comment = is_code_line(line, in_block_comment)
-#     return line.strip().startswith('#') or in_block_comment
-
 
 def find_longest_match_with_comments(matches, between_lines, program_type, is_start=True):
     if not matches:

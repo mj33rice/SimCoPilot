@@ -100,8 +100,8 @@ def get_output_to_check(code_task, language):
     return output_to_check
 
 def process_and_evaluate_code(src_df, args, 
-                              before_post_process_step='cleaned_code', steps=['original_code', 'cleaned_code', 'trimmed_code', 'indented_code'],
-                              print_process=True):
+                            before_post_process_step='cleaned_code', steps=['original_code', 'cleaned_code', 'trimmed_code', 'indented_code'],
+                            print_process=True):
     # Initialize the columns with default values
     src_df['post_process_eval_res'] = None
     src_df['post_process_pass_ratio'] = None
@@ -125,11 +125,6 @@ def process_and_evaluate_code(src_df, args,
         after = ast.literal_eval(row['after'])
         start_line = row['start_line']
         end_line = row['end_line']
-
-        # # Skip the row if start_line is greater than end_line
-        # if start_line > end_line:
-        #     continue
-
         gen_code_pass_ratio = row['gen_code_pass_ratio']
         post_process_steps = row['gen_code_process_steps']
 
@@ -137,7 +132,6 @@ def process_and_evaluate_code(src_df, args,
         try:
             gen_code_pass_ratio_val = convert_to_float(gen_code_pass_ratio)
         except :
-            # import pdb; pdb.set_trace()
             # If not, set it to a default value (e.g., 0)
             gen_code_pass_ratio_val = 0
 
@@ -223,14 +217,10 @@ def main(args, src_csv_folder, output_file_path, gen_model, code_gen_mode='no_af
             start_line = row['start_line']
             end_line = row['end_line']
 
-            # if start_line != 109 and end_line != 109:
-            #     continue
-
             # Skip the row if start_line is greater than end_line
             if start_line > end_line:
                 src_df = src_df.drop(index)
                 continue
-
             
             # Run the post_process_gen_code() function
             gen_code_dict, post_process_steps = post_process_gen_code(original_gen_code, before, after, program_type, 
