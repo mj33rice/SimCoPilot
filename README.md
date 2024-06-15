@@ -1,9 +1,15 @@
 # SimCoPilot: Evaluating Models for Co-pilot-Style Code Generation
-SimCoPilot is a benchmark for evaluating LLMs as "copilot"-style interactive coding assistants, testing their ability to integrate and complete code within complex real-world software environments.
+*SimCoPilot* is a benchmark with:
+- **Purpose**: Evaluate LLMs as interactive coding assistants in "copilot"-style.
+- **Focus**: Test AI's ability to integrate and complete code in complex software environments.
+
+<!-- Why SimCoPilot? -->
 
 ![Figure 1: Workflow for each of the 1,163 programming tasks in SIMCOPILOT.](figures/Workflow.png)
 
-*Figure 1: Workflow for each of the 1,163 programming tasks in SimCoPilot.*
+*An AI is  given code completion tasks: given a partially-completed code such as a commented `method header` with an empty `body`, an `if-statement` with an `else` block, or an empty `for-loop` body, can an AI tool correctly complete the next few lines of code?*
+
+
 ## Dataset
 
 
@@ -44,7 +50,7 @@ pip install -r requirements.txt
 ```
 
 <details>
-<summary>OpenAI & Anthropic modles setup</summary>
+<summary>OpenAI & Anthropic models setup</summary>
 1. Install the necessary Python packages:
 
 ```bash
@@ -134,9 +140,6 @@ For detailed examples of code Post-Processing, please refer to the figure below:
 
 *Figure 3: Example completion task from SimCoPilotJ and step-by-step post-processing demonstration*
 
-## Contributions
-
-Contributions to enhance the tool's capabilities, including support for more languages or improved analysis algorithms, are welcome. Please submit a pull request or an issue for discussion.
 
 ## License
 
