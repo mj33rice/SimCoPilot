@@ -77,18 +77,32 @@ source ~/.bash_profile (or source ~/.zshrc)
 
 
 ## How to Run 
+To run `analyzer_demo_input_LNs.py`, specify paths for your source code and test cases, the generation model, and the code generation mode as follows:
 ```python
-# LLMs Generations
-CUDA_VISIBLE_DEVICES=2 python analyzer_demo_input_LNs.py ./example_code/Python/simplex_method/simplex_method.py ./example_code/Python/simplex_method/simplex_method.json --read_dependency_results --update_def_line --gen_model deepseek-coder-1.3b-instruct --code_gen_mode with_afterlines 
+python analyzer_demo_input_LNs.py <source_code_path> <test_cases_path> --gen_model <model_name> --code_gen_mode <mode>
 ```
-In the above command:
 
-`--gen_model`: `deepseek-coder-1.3b-instruct`: This argument specifies the model to be used for code generation. In this context, it is used to select the 'deepseek-coder-1.3b-instruct' model for generating code.
+- `source_code_path`: Path to the Python source code file. Example: `./path/to/source_code.py`
+- `test_cases_path`: Path to the JSON test cases file. Example: `./path/to/test_cases.json`
+- `--gen_model`: Model for code generation, e.g., `deepseek-coder-1.3b-instruct`.
+- `--code_gen_mode`: Specifies the code generation task type:
+    - `with_afterlines`: For infilling tasks with context before and after the target code.
+    - `no_afterlines`: For completion tasks, generating code to finish a block without subsequent context.
 
-`--code_gen_mode`: `with_afterlines`: This argument determines the mode of code generation. The 'with_afterlines' mode likely controls whether or not additional lines of code are generated after the main code block.
-Debug Mode
+### Example Command
 
-`--code_gen_timeout`: This argument sets a timeout limit for the code generation process. It is used in the LLMs_gen_and_post_process function to prevent the code generation process from running indefinitely. 
+To run the `analyzer_demo_input_LNs.py` script with specific parameters, you can use the following command:
+
+```python
+CUDA_VISIBLE_DEVICES=2 python analyzer_demo_input_LNs.py \
+./example_code/Python/simplex_method/simplex_method.py \
+./example_code/Python/simplex_method/simplex_method.json \
+--read_dependency_results --update_def_line \
+--gen_model deepseek-coder-1.3b-instruct \
+--code_gen_mode with_afterlines
+```
+
+This command specifies the use of the `deepseek-coder-1.3b-instruct` model for code generation with the mode set to `with_afterlines`, indicating that the generation should consider both the preceding and following context.
 <details>
 <summary>Run from the Bash Script</summary>
 

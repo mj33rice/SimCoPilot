@@ -209,13 +209,6 @@ def load_test_cases_w_expected_output(file_path, before, between, after, source_
                 raise ValueError(f"Test case or expected output not found for index {index}.")
             # If the test case or expected output does not exist, break the loop
             break
-    ############TODO: Calculate detailed pass ratio for comp215############
-    # if "COMP215" in source_code_path:
-    #     test_info = parse_COMP215_test_output("".join(final_eval_result))  # Assuming final_eval_result combines JUnit output
-    #     pass_ratio = calculate_COMP215_pass_ratio(test_info)
-    #     import pdb;pdb.set_trace()
-    # else:
-    ##############################################################
     pass_ratio = calculate_pass_ratio(final_eval_result)
     
     return final_eval_result, pass_ratio

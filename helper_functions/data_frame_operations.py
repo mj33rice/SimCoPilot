@@ -118,20 +118,9 @@ def process_horizon_categories_output(csv_file):
     return results
 
 # Example usage:
-# sor_csv_file = '../Analysis_Results/Post_process/gpt-3.5-turbo-0125_no_afterlines_FactorizationTester_05_02_00_45.csv'
-# tar_csv_folder = '../Analysis_Results/Post_process/FactorizationTester/'
-# sor_csv_file = '../Analysis_Results/Post_process/gpt-3.5-turbo-0125_no_afterlines_CounterTester_05_02_00_51.csv'
-# tar_csv_folder = '../Analysis_Results/Post_process/CounterTester/'
-# sor_csv_file = '../Analysis_Results/Post_process/gpt-3.5-turbo-0125_with_afterlines_simplex_method_w_comments_V2_05_03_10_26.csv'
-# tar_csv_folder = '../Analysis_Results/Post_process/SimplexMethod/'
-
-# sor_csv_file = '../Analysis_Results/Post_process/Labels_ref/gpt-3.5-turbo-0125_with_afterlines_DoubleVectorTester_05_07_23_34.csv'
-# tar_csv_folder = '../Analysis_Results/Post_process/DoubleVectorTester/'
-
 sor_csv_file = '../Analysis_Results/Post_process/Labels_ref/gpt-3.5-turbo-0125_with_afterlines_SparseArrayTester_05_07_23_35.csv'
 tar_csv_folder = '../Analysis_Results/Post_process/SparseArrayTester/'
 
 keys = ['before','between','after']
-# keys = ['before']
 columns_to_overwrite = ['start_line', 'end_line', 'code_task', 'reason_categories_output', 'horizon_categories_output', 'reason_freq_analysis', 'horizon_freq_analysis']
 overwrite_columns_in_all_files(sor_csv_file, tar_csv_folder, columns_to_overwrite, keys, create_new_cols=True)

@@ -1,6 +1,6 @@
-# Example Code Analysis Demo
+<!-- # Example Code Analysis Demo -->
 
-
+<!-- 
 ### Example Code 1
 
 Analyze dependencies within a given segment of code.
@@ -106,4 +106,4 @@ Function 'outer_function' used at line 13 is defined at line 3 and has a Medium-
 Variable 'instance' used at line 14 is locals defined at line 13 and has a Short-Range dependency.
 Variable 'global_var' used at line 15 is locals defined at line 5 and has a Medium-Range dependency.
 Variable 'result' used at line 16 is locals defined at line 14 and has a Short-Range dependency.
-```
+``` -->

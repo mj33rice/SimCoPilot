@@ -66,37 +66,3 @@ def get_task_horizon_reason_labels(df):
     df['task_horizon_categories'] = analyze_and_get_frequencies(df, 'horizon_categories_output', horizon_pattern)
     df['task_reason_categories'] = analyze_and_get_frequencies(df, 'reason_categories_output', reason_pattern)
     return df
-
-
-# # Set display options
-# pd.set_option('display.max_columns', None)  # Ensures all columns are displayed
-# pd.set_option('display.width', 2)        # Sets display width to avoid wrapping of columns
-# pd.set_option('display.max_colwidth', None) # Displays full content of each column
-
-# # Path to your CSV file
-# csv_file_path = '../Analysis_Results/analysis_results_2.csv'
-# # Load the CSV file into a pandas DataFrame
-# df = pd.read_csv(csv_file_path)
-# # Display the DataFrame
-# print(df)
-# df = get_task_horizon_reason_labels(df)
-# # Save the updated DataFrame to a new CSV file
-# output_file_path = '../Analysis_Results/updated_analysis_results.csv'
-# df.to_csv(output_file_path, index=False)
-# # Display a message to confirm the file has been saved
-# print(f"DataFrame successfully saved to {output_file_path}")
-# import pdb;pdb.set_trace()
-
-# # Example usage with a single row
-# reason_categories_output = [
-#     "'If-else Reasoning' detected at line 43.",
-#     "'If-else Reasoning' detected at line 45.",
-#     "'If-else Reasoning' detected at line 47."
-# ]
-# horizon_categories_output = ["Variable 'ltThreshold' used at line 41 is local defined at line 34 and has a Medium-Range dependency.", "Variable 'newVars' used at line 41 is local defined at line 35 and has a Medium-Range dependency.", "Variable 'numRows' used at line 42 is local defined at line 30 and has a Medium-Range dependency.", "Variable 'ltThreshold' used at line 42 is local defined at line 34 and has a Medium-Range dependency.", "Variable 'eqThreshold' used at line 43 is local defined at line 34 and has a Medium-Range dependency.", "Variable 'eqThreshold' used at line 44 is local defined at line 34 and has a Medium-Range dependency.", "Variable 'numRows' used at line 44 is local defined at line 30 and has a Medium-Range dependency.", "Variable 'maximization' used at line 45 is local defined at line 34 and has a Medium-Range dependency.", "Variable 'x' used at line 46 is part of a list_comp.", "Variable 'newVars' used at line 47 is local defined at line 35 and has a Medium-Range dependency.", "Variable 'cost' used at line 48 is local defined at line 34 and has a Medium-Range dependency.", "Variable 'equalities' used at line 48 is local defined at line 34 and has a Medium-Range dependency.", "Variable 'eqThreshold' used at line 48 is local defined at line 34 and has a Medium-Range dependency."]
-# horizon_pattern, reason_pattern = define_patterns()
-# reason_freq_analysis = analyze_and_get_frequencies(reason_categories_output, None, reason_pattern)
-# horizon_freq_analysis = analyze_and_get_frequencies(horizon_categories_output, None, horizon_pattern)
-
-# print(reason_freq_analysis)
-# print(horizon_freq_analysis)
