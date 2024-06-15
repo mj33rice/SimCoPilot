@@ -117,7 +117,7 @@ chmod +x run_java_paral.sh
 ```
 </details>
 
-# Post Processing
+# Post Processing & Evaluation 
 ```python
 python -m helper_functions.update_post_process_and_eval ./PATH/to/result_folder
 ```
