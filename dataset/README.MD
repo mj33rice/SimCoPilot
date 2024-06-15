@@ -17,4 +17,4 @@ The dataset comprises 11 columns, detailed as follows:
 
 ## Data Nutrition Label
 
-The Data Nutrition Label for this dataset has been officially submitted to [Data Nutrition Project](https://datanutrition.org/) and is currently pending approval. For those interested, the draft version of the label can be found in `dataset/Data_Nutrition_Label_for_SimCoPilot.pdf`.
+The Data Nutrition Label for this dataset has been officially submitted to [Data Nutrition Project](https://datanutrition.org/) and is currently pending approval. For those interested, the draft version of the label can be found in [`dataset/Data_Nutrition_Label_for_SimCoPilot.pdf`](./dataset/Data_Nutrition_Label_for_SimCoPilot.pdf).
