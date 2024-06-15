@@ -156,7 +156,6 @@ def main(args, source_code_path, test_cases_path, output_file_path, gen_model, c
     else:
         raise ValueError("Invalid code_gen_mode. Please choose either 'no_afterlines' or 'with_afterlines'.")
     
-    # import pdb;pdb.set_trace()
     if args.show_task_specs:
         print("##############  Output Path  ##############")
         print(new_output_path)
@@ -216,7 +215,6 @@ def main(args, source_code_path, test_cases_path, output_file_path, gen_model, c
             writer = csv.DictWriter(file, fieldnames=fieldnames)
             writer.writeheader()
             for item in interesting_points_L:
-                # import pdb;pdb.set_trace()
                 try:
                     start_line, end_line, before, between, after,\
                     ground_truth_eval_res, ground_truth_pass_ratio,\
@@ -256,7 +254,6 @@ def main(args, source_code_path, test_cases_path, output_file_path, gen_model, c
         args.code_gen_timeout = 20*60
         args.eval_timeout = 10*60
         for item in interesting_points_L:
-            # import pdb;pdb.set_trace()
             start_line, end_line, before, between, after,\
             ground_truth_eval_res, ground_truth_pass_ratio,\
             gen_code_dict, post_process_steps, selected_last_post_process_step, gen_code_selected,\
@@ -274,10 +271,8 @@ if __name__ == "__main__":
         parser.add_argument('test_cases_path', type=str, help='Path to the test cases file.')
         parser.add_argument('--output_file_path', type=str, default='./Analysis_Results/complete_output.csv', help='Analysis Results of Code Generation.')
         parser.add_argument('--short_range', type=int, default=10, help='Distance for Short-Range dependencies.')
-        #medium_range was 20
         parser.add_argument('--medium_range', type=int, default=30, help='Distance for Medium-Range dependencies.')
         parser.add_argument('--gen_model', type=str, default='gpt-3.5-turbo-0125', help='LLM Selection for code generation task.')
-        # model= 'gpt-4-1106-preview', "gpt-4-0125-preview", #gpt-4-1106-preview #gpt-4 #gpt-4-32k #gpt-4-0613 #gpt-3.5-turbo-0613 #gpt-4-0125-preview
         parser.add_argument('--code_gen_mode', type=str, default='with_afterlines', help='LLM mode for code generation task, such as no_afterlines, with_afterlines, no_instruction.')
         parser.add_argument('--eval_timeout', type=int, default=5*60, help='Timeout for evaluating the generated code.')
         parser.add_argument('--code_gen_timeout', type=int, default=3*60, help='Timeout for generating the code.')
