@@ -82,7 +82,7 @@ To run `analyzer_demo_input_LNs.py`, specify paths for your source code and test
 python analyzer_demo_input_LNs.py <source_code_path> <test_cases_path> --gen_model <model_name> --code_gen_mode <mode>
 ```
 
-- `source_code_path`: Path to the Python source code file. Example: `./path/to/source_code.py`
+- `source_code_path`: Path to the Python or Java source code file. Example: `./path/to/source_code.py`
 - `test_cases_path`: Path to the JSON test cases file. Example: `./path/to/test_cases.json`
 - `--gen_model`: Model for code generation, e.g., `deepseek-coder-1.3b-instruct`.
 - `--code_gen_mode`: Specifies the code generation task type:
