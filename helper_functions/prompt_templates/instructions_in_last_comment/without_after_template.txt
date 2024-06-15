@@ -1,8 +1,0 @@
-Generate the {program_type} code necessary based on the instructions in the last comment in the 'before' part. The code should follow these instructions without replicating the logic or functionality of the 'before' section. Ensure the generated code logically continues from the 'before' section.
-
-Before Section:
-{before_section}
-
-{begin_missing_code}
-[Code required here]
-{end_missing_code}
