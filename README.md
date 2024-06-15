@@ -7,7 +7,7 @@
 
 ![Figure 1: Workflow for each of the 1,163 programming tasks in SIMCOPILOT.](figures/Workflow.png)
 
-*An AI is  given code completion tasks: given a partially-completed code such as a commented `method header` with an empty `body`, an `if-statement` with an `else` block, or an empty `for-loop` body, can an AI tool correctly complete the next few lines of code?*
+*Question: given a partially-completed code such as a commented `method header` with an empty `body`, an `if-statement` with an `else` block, or an empty `for-loop` body, can an AI tool correctly complete the next few lines of code?*
 
 
 ## Dataset
