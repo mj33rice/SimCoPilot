@@ -1,18 +1,17 @@
 # SimCoPilot: Evaluating Models for Co-pilot-Style Code Generation
-*SimCoPilot* is a benchmark with:
+**SimCoPilot** is a benchmark with:
 - **Purpose**: Evaluate LLMs as interactive coding assistants in "copilot"-style.
 - **Focus**: Test AI's ability to integrate and complete code in complex software environments.
 
-Why SimCoPilot?
+![Figure 1: Workflow for each of the 1,163 programming tasks in SIMCOPILOT.](figures/Workflow.png)
+🤔*Question: Can an AI tool correctly complete code snippets like `method body`, `if-statements`, or `for-loops` from real-world projects?*
+
+**Why SimCoPilot?**
 - **Real-World Complexity**: Tests AI on complex, real-project tasks, not just concise and standalone programs.
 - **Real-Code Understanding**: Focuses on AI's ability to work with actual code, without needing manually annotated problem descriptions to prompt for each task.
 - **Fine-grained Results**: Stratifies results according to metrics such as distance to the nearest referenced object, proximity to the nearest comment, and various programming constructs.
 
-![Figure 1: Workflow for each of the 1,163 programming tasks in SIMCOPILOT.](figures/Workflow.png)
-*Question: Can an AI tool correctly complete code snippets like `method body`, `if-statements`, or `for-loops` from real-world projects?*
-
-
-## Dataset
+## 📊 Dataset
 
 
 The data for this project can be found in the ` dataset/SimCoPilot.csv.zip` file. 
@@ -84,7 +83,7 @@ source ~/.bash_profile (or source ~/.zshrc)
 </details> 
 
 
-## How to Run 
+## 🏃How to Run 
 To run `analyzer_demo_input_LNs.py`, specify paths for your source code and test cases, the generation model, and the code generation mode as follows:
 ```python
 python analyzer_demo_input_LNs.py <source_code_path> <test_cases_path> --gen_model <model_name> --code_gen_mode <mode>
@@ -92,7 +91,7 @@ python analyzer_demo_input_LNs.py <source_code_path> <test_cases_path> --gen_mod
 
 - `source_code_path`: Path to the Python or Java source code file. Example: `./path/to/source_code.py`
 - `test_cases_path`: Path to the JSON test cases file. Example: `./path/to/test_cases.json`
-- `--gen_model`: Model for code generation, e.g., `deepseek-coder-1.3b-instruct`.
+- `--gen_model`: Model for code generation, e.g.`gpt-4-turbo`, `deepseek-coder-1.3b-instruct`.
 - `--code_gen_mode`: Specifies the code generation task type:
     - `with_afterlines`: For infilling tasks with context before and after the target code.
     - `no_afterlines`: For completion tasks, generating code to finish a block without subsequent context.
@@ -102,7 +101,7 @@ python analyzer_demo_input_LNs.py <source_code_path> <test_cases_path> --gen_mod
 To run the `analyzer_demo_input_LNs.py` script with specific parameters, you can use the following command:
 
 ```python
-CUDA_VISIBLE_DEVICES=2 python analyzer_demo_input_LNs.py \
+python analyzer_demo_input_LNs.py \
 ./example_code/Python/simplex_method/simplex_method.py \
 ./example_code/Python/simplex_method/simplex_method.json \
 --read_dependency_results --update_def_line \
@@ -110,7 +109,7 @@ CUDA_VISIBLE_DEVICES=2 python analyzer_demo_input_LNs.py \
 --code_gen_mode with_afterlines
 ```
 
-This command specifies the use of the `deepseek-coder-1.3b-instruct` model for code generation with the mode set to `with_afterlines`, indicating that the generation should consider both the preceding and following context.
+This command specifies the use of the `gpt-4-turbo` model for code generation with the mode set to `with_afterlines`, indicating that the generation should consider both the preceding and following context.
 <details>
 <summary>Run from the Bash Script</summary>
 
@@ -125,12 +124,12 @@ chmod +x run_java_paral.sh
 ```
 </details>
 
-# Post Processing & Evaluation 
+## 🛠 Post Processing & Evaluation 
 ```python
 python -m helper_functions.update_post_process_and_eval ./PATH/to/result_folder
 ```
 
-## Example of Post-Processing
+### Example of Post-Processing
 
 For detailed examples of code Post-Processing, please refer to the figure below:
 
