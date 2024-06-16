@@ -3,11 +3,13 @@
 - **Purpose**: Evaluate LLMs as interactive coding assistants in "copilot"-style.
 - **Focus**: Test AI's ability to integrate and complete code in complex software environments.
 
-<!-- Why SimCoPilot? -->
+Why SimCoPilot?
+- **Real-World Complexity**: Tests AI on complex, real-project tasks, not just concise and standalone programs.
+- **Real-Code Understanding**: Focuses on AI's ability to work with actual code, without needing manually annotated problem descriptions to prompt for each task.
+- **Fine-grained Results**: Stratifies results according to metrics such as distance to the nearest referenced object, proximity to the nearest comment, and various programming constructs.
 
 ![Figure 1: Workflow for each of the 1,163 programming tasks in SIMCOPILOT.](figures/Workflow.png)
-
-*Question: given a partially-completed code such as a commented `method header` with an empty `body`, an `if-statement` with an `else` block, or an empty `for-loop` body, can an AI tool correctly complete the next few lines of code?*
+*Question: Can an AI tool correctly complete code snippets like `method body`, `if-statements`, or `for-loops` from real-world projects?*
 
 
 ## Dataset
