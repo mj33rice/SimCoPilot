@@ -37,6 +37,9 @@ The data nutrition label can be found at [Data Nutrition Label](https://github.c
 | DeepSeek 1.3B    | 8.1±2.7       | 12.2±4.3          | 5.6±2.7     | 16.0±4.2        | 60.4    | 54.8 |
 | Phi-3(4k) 3.8B   | 5.2±2.2       | 8.0±3.7           | 7.7±5.8     | 10.4±3.5        | 59.1    | 54.2 |
 
+<!-- When controllable and applicable, the randomness of the AI-for-code model is "turned off" so that the most likely/preferred answer is produced.
+All results in the SIMCOPILOT benchmark are presented with 95% confidence intervals. -->
+> **Note**: To ensure consistency, the AI-for-code model's randomness is minimized, aiming for the most likely/preferred outcomes. All SIMCOPILOT benchmark results are reported with 95% confidence intervals.
 ## 🚀 Getting Started
 
 1. Clone the repository.
