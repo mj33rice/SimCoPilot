@@ -86,7 +86,8 @@ source ~/.bash_profile (or source ~/.zshrc)
 </details> 
 
 
-## 🏃How to Run 
+## 🏃How to Run
+### Code Generation 
 To run `analyzer_demo_input_LNs.py`, specify paths for your source code and test cases, the generation model, and the code generation mode as follows:
 ```python
 python analyzer_demo_input_LNs.py <source_code_path> <test_cases_path> --gen_model <model_name> --code_gen_mode <mode>
@@ -99,7 +100,7 @@ python analyzer_demo_input_LNs.py <source_code_path> <test_cases_path> --gen_mod
     - `with_afterlines`: For infilling tasks with context before and after the target code.
     - `no_afterlines`: For completion tasks, generating code to finish a block without subsequent context.
 
-### Example Command
+#### Example Command
 
 To run the `analyzer_demo_input_LNs.py` script with specific parameters, you can use the following command:
 
@@ -132,7 +133,7 @@ chmod +x run_java_paral.sh
 python -m helper_functions.update_post_process_and_eval ./PATH/to/result_folder
 ```
 
-### Example of Post-Processing
+#### Example of Post-Processing
 
 For detailed examples of code Post-Processing, please refer to the figure below:
 
