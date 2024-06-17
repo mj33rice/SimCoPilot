@@ -127,7 +127,7 @@ chmod +x run_java_paral.sh
 ```
 </details>
 
-## 🛠 Post Processing & Evaluation 
+## 🛠 Post Processing 
 ```python
 python -m helper_functions.update_post_process_and_eval ./PATH/to/result_folder
 ```
@@ -144,6 +144,11 @@ For detailed examples of code Post-Processing, please refer to the figure below:
 
 *Figure 3: Example completion task from SimCoPilotJ and step-by-step post-processing demonstration*
 
+## 🔍 Stratified Evaluation
+Detailed results comparing the test case pass ratios of various LLMs:  
+- Categorized by models and different programming constructs: [code](helper_functions/code_gen_result_display.ipynb)
+- Categorized by distance to the nearest referenced object: [code](helper_functions/horizon_dist.ipynb)
+- Categorized by proximity to the nearest comments: [code](helper_functions/get_comment_dist.ipynb)
 
 ## License
 
