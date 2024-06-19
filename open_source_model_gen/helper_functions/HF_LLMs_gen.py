@@ -1,0 +1,306 @@
+import logging
+import signal
+
+from .HF_models import num_tokens_from_HF_models, get_response_from_HF_models, truncate_input, truncate_input_for_Meta, get_response_from_Meta_models
+# from ...helper_functions.post_gen_process import clean_code, auto_indent, trim_similar_edges
+from helper_functions.post_gen_process import clean_code, auto_indent, trim_similar_edges
+
+logger = logging.getLogger(__name__)
+
+
+# Helper function to handle the timeout
+class TimeoutException(Exception):
+	pass  # Simple exception to be raised on timeout
+
+
+def raise_timeout(signum, frame):
+	raise TimeoutException()
+
+
+def get_model_info(model, model_context):
+	try:
+		max_tokens = model_context[model]["context"]
+		return max_tokens
+	except Exception as e:
+		print("Failed to retrieve model information:", str(e))
+		return None
+
+
+def remove_repeated_lines(between, before_lines, after_lines):
+	"""
+	Removes lines in 'between' that are exactly present in 'before_lines' or 'after_lines'.
+
+	Args:
+	between (str): The 'between' part of the code.
+	before_lines (list[str]): Lines of code before the 'between' part.
+	after_lines (list[str]): Lines of code after the 'between' part.
+
+	Returns:
+	str: The 'between' part of the code with exact duplicate lines removed.
+	"""
+	before_lines_set = set(before_lines)
+	after_lines_set = set(after_lines)
+	between_lines = between.split('\n')
+	
+	# Keep only lines that are not in before_lines_set or after_lines_set
+	unique_lines = [line for line in between_lines if line not in before_lines_set and line not in after_lines_set]
+	
+	return '\n'.join(unique_lines)
+
+
+def extract_code_results(gen_code_dict, last_post_process_step=None):
+	"""
+	Extracts the code results from the generation and post-processing steps, returning both
+	the step and the code result.
+
+	Args:
+		gen_code_dict (dict): Dictionary containing the results of the code generation and post-processing.
+		last_post_process_step (list of str, optional): Specific keys to extract from gen_code_dict in order.
+			If None, extracts the last non-empty result from the predefined keys.
+
+	Returns:
+		tuple: A tuple containing the step name and the result code from the last specified or non-empty processing step.
+	"""
+	default_steps = ['original_code', 'cleaned_code', 'trimmed_code', 'indented_code']
+	
+	if last_post_process_step is None:
+		# Loop through the default list in reverse to find the last non-empty result
+		for step in reversed(default_steps):
+			if gen_code_dict[step]:
+				return step, gen_code_dict[step]
+	else:
+		# Loop through the provided list to extract the result of the last specified step
+		for step in last_post_process_step:
+			if step in gen_code_dict and gen_code_dict[step]:
+				return step, gen_code_dict[step]
+	
+	return "", ""  # Return empty strings if no valid code or step was found
+
+
+def read_prompt_from_file(file_path, structured_context, num_pairs, rounds):
+	with open(file_path, 'r') as file:
+		content = file.read()
+	return content.format(structured_context=structured_context, num_pairs=num_pairs, rounds=rounds)
+
+
+def create_input_messages(
+		program_type, prompt_template, before, after, examples_content, instructions_in_comment, comment_symbol
+):
+	# Optionally include the instruction based on the last comment in the 'before' part
+	instruction_text = " Generate code based on the instructions in the last comment in the 'before' part. " if instructions_in_comment else ""
+	
+	# Add instruction about indentation for Python
+	if program_type == "Python":
+		instruction_text += "\n\nNOTE: Python uses indentation to define blocks of code. Therefore, it's crucial to use the correct indentation when generating your code."
+		if after:
+			instruction_text += " Ensure your code connects seamlessly with the 'after' section using the correct indentation."
+		else:
+			instruction_text += " Consider the indentation of the 'before' section when generating your code."
+	
+	# Format the prompt with the necessary sections
+	formatted_after_section = f"After Section:\n{after}" if after else ""
+	
+	prompt = prompt_template.format(
+		program_type=program_type,
+		instruction_text=instruction_text,
+		before_section=before,
+		begin_missing_code=f"{comment_symbol} --BEGIN MISSING CODE--",
+		end_missing_code=f"{comment_symbol} --END MISSING CODE--",
+		after_section=formatted_after_section,
+		examples=examples_content  # This will include the examples directly in the prompt if provided
+	)
+	
+	input_messages = [
+		{"role": "system", "content": f"{program_type} code generation"},
+		{"role": "user", "content": prompt}
+	]
+	return input_messages
+
+
+# Add HF model support generate_code_strict_format()
+##############################################################################################################
+def generate_code_strict_format(
+		before_lines, after_lines, program_type, model_name, model, tokenizer, model_max_tokens,
+		prompts_path="./helper_functions/prompt_templates",
+		instructions_in_comment=False, with_examples=False
+):
+	before = "\n".join(before_lines)
+	after = "\n".join(after_lines)
+	
+	comment_symbol = "//" if program_type == "Java" else "#"
+	
+	# Choose the prompt and examples files based on whether after_lines is provided
+	if after_lines:
+		prompt_file_path = f"{prompts_path}/before_after_template.txt"
+		examples_file_path = f"{prompts_path}/{program_type.lower()}_examples_with_before_after.txt" if with_examples else None
+	else:
+		prompt_file_path = f"{prompts_path}/without_after_template.txt"
+		examples_file_path = f"{prompts_path}/{program_type.lower()}_examples_without_after.txt" if with_examples else None
+	
+	# Read the prompt from the chosen file
+	with open(prompt_file_path, 'r') as file:
+		prompt_template = file.read()
+	
+	# Optionally add examples to the prompt
+	examples_content = ""
+	if with_examples and examples_file_path:
+		with open(examples_file_path, 'r') as file:
+			examples_content = file.read()
+	
+	input_messages = create_input_messages(
+		program_type, prompt_template, before, after, examples_content, instructions_in_comment, comment_symbol
+	)
+	
+	# Calculate the maximum token limit for the "before" and "after" sections
+	max_gen_tokens = 200
+	if model_name in ["Meta-Llama-3-8B-Instruct", "Meta-Llama-3-70B-Instruct"]:
+		num_tokens = len(model.formatter.encode_dialog_prompt(input_messages))
+	else:
+		num_tokens = num_tokens_from_HF_models(input_messages, tokenizer)
+	token_len_to_remove = -(model_max_tokens - max_gen_tokens - num_tokens)
+	
+	# import pdb; pdb.set_trace()
+	if token_len_to_remove > 0:
+		# Truncate the input messages if the token length exceeds the limit
+		# First truncate the 'before' section and keep at least keep_window tokens from the head
+		# Then truncate the 'after' section and keep at least keep_window tokens from the tail
+		if model_name in ["Meta-Llama-3-8B-Instruct", "Meta-Llama-3-70B-Instruct"]:
+			before, after = truncate_input_for_Meta(before, after, token_len_to_remove, tokenizer, max_gen_tokens)
+		else:
+			before, after = truncate_input(before, after, token_len_to_remove, tokenizer, max_gen_tokens)
+		
+		# import pdb; pdb.set_trace()
+		input_messages = create_input_messages(
+			program_type, prompt_template, before, after, examples_content, instructions_in_comment, comment_symbol
+		)
+	
+	if model_name in ["Meta-Llama-3-8B-Instruct", "Meta-Llama-3-70B-Instruct"]:
+		generated_code = get_response_from_Meta_models(input_messages, model, tokenizer, max_new_tokens=max_gen_tokens)
+	else:
+		generated_code = get_response_from_HF_models(input_messages, model, tokenizer, max_new_tokens=max_gen_tokens)
+	
+	# Extract the generated code between the designated markers
+	start_marker = f"{comment_symbol} --BEGIN MISSING CODE--"
+	end_marker = f"{comment_symbol} --END MISSING CODE--"
+	start_idx = generated_code.find(start_marker) + len(start_marker)
+	end_idx = generated_code.find(end_marker)
+	
+	if start_idx == len(start_marker) - 1 or end_idx == -1:
+		# If markers are not found, return the complete generated output
+		code_snippet = generated_code
+	else:
+		code_snippet = generated_code[start_idx:end_idx].strip()
+	
+	return code_snippet
+
+
+def post_process_gen_code(
+		gen_code,
+		before_lines,
+		after_lines,
+		program_type,
+		clean_gen_code=True,
+		remove_gen_repeated_lines=True,
+		add_auto_indent=True,
+		print_post_process=False
+):
+	# Initialize the results dictionary with empty values for each step
+	results = {
+		'original_code': '',
+		'cleaned_code': '',
+		'trimmed_code': '',
+		'indented_code': ''
+	}
+	post_process_steps = []  # List to store the post-processing steps applied
+	tab_indent = 4
+	# Dictionary to store results after each step
+	results['original_code'] = gen_code
+	if print_post_process:
+		print('-' * 80)
+		print("Original Code:\n")
+		print(gen_code.replace('\t', ' ' * tab_indent))
+	logger.info(f"{'-' * 80}\nOriginal Code:\n{gen_code}")
+	
+	# Clean generated code
+	if clean_gen_code:
+		post_process_steps.append('cleaned_code')
+		cleaned_code = clean_code(gen_code, program_type)
+		results['cleaned_code'] = cleaned_code
+		gen_code = cleaned_code  # Update gen_code to the cleaned version
+		if print_post_process:
+			print('-' * 80)
+			print("Cleaned Code:\n")
+			print(cleaned_code.replace('\t', ' ' * tab_indent))
+		logger.info(f"{'-' * 80}\nCleaned Code:\n{cleaned_code}")
+	
+	# Remove repeated lines
+	if remove_gen_repeated_lines:
+		post_process_steps.append('trimmed_code')
+		trimmed_code = trim_similar_edges(gen_code, before_lines, after_lines, program_type)
+		results['trimmed_code'] = trimmed_code
+		gen_code = trimmed_code  # Update gen_code to the trimmed version
+		if print_post_process:
+			print('-' * 80)
+			print("Trimmed Code:\n")
+			print(trimmed_code.replace('\t', ' ' * tab_indent))
+		logger.info(f"{'-' * 80}\nTrimmed Code:\n{trimmed_code}")
+	
+	# Auto-indent code (specifically for Python)
+	if add_auto_indent:
+		post_process_steps.append('indented_code')
+		indented_code = auto_indent(before_lines, gen_code, after_lines)
+		results['indented_code'] = indented_code
+		gen_code = indented_code  # Update gen_code to the indented version
+		if print_post_process:
+			print('-' * 80)
+			# print(f"Auto Indented Code:\n{gen_code}\n")
+			print("Auto Indented Code:\n")
+			print(indented_code.replace('\t', ' ' * tab_indent))
+		logger.info(f"{'-' * 80}\nAuto Indented Code:\n{indented_code}")
+	
+	# Return the dictionary containing all intermediate results
+	return results, post_process_steps
+
+
+def LLMs_gen_and_post_process(
+		before_lines,
+		after_lines,
+		program_type,
+		model_name,
+		model,
+		tokenizer,
+		model_max_tokens,
+		clean_gen_code=True,
+		remove_gen_repeated_lines=True,
+		add_auto_indent=True,
+		print_post_process=True,
+		gen_mode='no_afterlines',
+		gen_time_out=None
+):
+	# Wrap the code generation step with signal for timeout handling
+	try:
+		if gen_time_out:
+			signal.signal(signal.SIGALRM, raise_timeout)
+			signal.alarm(gen_time_out)  # Set the alarm
+		
+		# Generate initial code based on the mode
+		after_lines = '' if gen_mode == 'no_afterlines' else after_lines
+		gen_code = generate_code_strict_format(
+			before_lines, after_lines, program_type, model_name, model, tokenizer, model_max_tokens
+		)
+		
+		if gen_time_out:
+			signal.alarm(0)  # Disable the alarm after successful generation
+
+	except TimeoutException:
+		return {'Error': 'Timeout: Code generation exceeded time limit'}, []
+	
+	except Exception as e:
+		return {'Error': f"Unexpected error during code generation: {e}"}, []
+	
+	# Post-process the generated code
+	results, post_process_steps = post_process_gen_code(gen_code, before_lines, after_lines, program_type,
+														clean_gen_code, remove_gen_repeated_lines,
+														add_auto_indent, print_post_process)
+	
+	return results, post_process_steps

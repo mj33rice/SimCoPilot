@@ -9,7 +9,7 @@ from termcolor import colored, cprint
 from helper_functions.text_split_and_color import split_code, colored_line_numbers_and_text, add_line_numbers_and_color
 from helper_functions.eval_code import load_test_cases_w_expected_output
 from helper_functions.LLMs_gen  import LLMs_gen_and_post_process, extract_code_results, post_process_gen_code
-from analyzer_demo_input_LNs import get_checkpoints_labels
+from close_source_model_gen import get_checkpoints_labels
 import shutil
 from multiprocessing import Pool
 from dependency_analyzer.analyzer import DependencyAnalyzer

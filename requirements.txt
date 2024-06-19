@@ -21,3 +21,4 @@ wandb==0.15.4
 jinja2
 einops
 pytest
+accelerate

@@ -87,7 +87,7 @@ source ~/.bash_profile (or source ~/.zshrc)
 
 
 ## 🏃How to Run
-### Code Generation 
+<!-- ### Code Generation 
 To run `analyzer_demo_input_LNs.py`, specify paths for your source code and test cases, the generation model, and the code generation mode as follows:
 ```python
 python analyzer_demo_input_LNs.py <source_code_path> <test_cases_path> --gen_model <model_name> --code_gen_mode <mode>
@@ -98,8 +98,27 @@ python analyzer_demo_input_LNs.py <source_code_path> <test_cases_path> --gen_mod
 - `--gen_model`: Model for code generation, e.g.`gpt-4-turbo`, `deepseek-coder-1.3b-instruct`.
 - `--code_gen_mode`: Specifies the code generation task type:
     - `with_afterlines`: For infilling tasks with context before and after the target code.
-    - `no_afterlines`: For completion tasks, generating code to finish a block without subsequent context.
+    - `no_afterlines`: For completion tasks, generating code to finish a block without subsequent context. -->
 
+### Code Generation 
+To run `analyzer_demo_input_LNs.py`, specify paths for your source code and test cases, the generation model, and the code generation mode as follows:
+### Closed Source Models
+```python
+python close_source_model_gen.py <source_code_path> <test_cases_path> --gen_model <model_name> --code_gen_mode <mode>
+```
+
+- `source_code_path`: Path to the Python or Java source code file. 
+- `test_cases_path`: Path to the JSON test cases file.
+- `--gen_model`: Close source model for code generation, e.g.`gpt-4-turbo`, `claude-3-opus-20240229`.
+- `--code_gen_mode`: Specifies the code generation task type:
+    - `with_afterlines`: For infilling tasks with context before and after the target code.
+    - `no_afterlines`: For completion tasks, generating code to finish a block without subsequent context.
+### Open Source Models
+```python
+CUDA_VISIBLE_DEVICES=$gpu_id python -m open_source_model_gen.open_source_code_gen <source_code_path> <test_cases_path> --gen_model <model_name> --code_gen_mode <mode>
+```
+- `$gpu_id`: Specifies the ID of the GPU to use for the code generation.
+- `--gen_model`: Close source model for code generation, e.g.`deepseek-coder-1.3b-instruct`.
 #### Example Command
 
 To run the `analyzer_demo_input_LNs.py` script with specific parameters, you can use the following command:
@@ -109,7 +128,7 @@ python analyzer_demo_input_LNs.py \
 ./example_code/Python/simplex_method/simplex_method.py \
 ./example_code/Python/simplex_method/simplex_method.json \
 --read_dependency_results --update_def_line \
---gen_model deepseek-coder-1.3b-instruct \
+--gen_model gpt-4-turbo \
 --code_gen_mode with_afterlines
 ```
 

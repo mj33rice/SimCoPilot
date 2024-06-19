@@ -1,0 +1,1 @@
+This is folder is derived from [Llama 3 GitHub Reporsitory](https://github.com/meta-llama/llama3)

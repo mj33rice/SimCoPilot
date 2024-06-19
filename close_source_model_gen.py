@@ -2,6 +2,13 @@ import ast
 import json
 import csv
 import os
+# Disable oneDNN custom operations warning
+os.environ['TF_ENABLE_ONEDNN_OPTS'] = '0'
+
+# Suppress TensorFlow warnings (optional, for general TensorFlow warnings)
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'  # 0 = all logs shown, 1 = filter out INFO logs, 2 = filter out WARNING logs, 3 = filter out ERROR logs
+import pathlib
+import logging
 import datetime
 import argparse
 import traceback  # Import traceback to log the exceptions if needed
@@ -17,8 +24,16 @@ import signal
 # os.environ["CUDA_VISIBLE_DEVICES"] = "3"  # Use the first GPU
 # Get the current process id
 pid = os.getpid()
+current_time = datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
+log_dir = os.path.join('./logging/close_source', current_time)
+_dir = pathlib.Path(log_dir)
+_dir.mkdir(parents=True, exist_ok=True)
+logging.basicConfig(filename=os.path.join(log_dir, 'logs.txt'), filemode='w',
+                    format='%(asctime)s - %(levelname)s - %(name)s -   %(message)s',
+                    datefmt='%m/%d/%Y %H:%M:%S', level=logging.INFO)
+logger = logging.getLogger(__name__)
 
-def modify_output_path(source_code_path, output_file_path, gen_model, code_gen_mode):
+def modify_output_path(source_code_path, output_file_path, gen_model, code_gen_mode, save_to_log_folder=True):
     # Extract the last part of the file name from source_code_path and remove the extension
     file_name_without_extension = os.path.splitext(os.path.basename(source_code_path))[0]
 
@@ -29,9 +44,11 @@ def modify_output_path(source_code_path, output_file_path, gen_model, code_gen_m
     new_file_name = f"{gen_model}_{code_gen_mode}_{file_name_without_extension}_{current_time}.csv"
 
     # Construct the new output path by joining the new file name with the directory of the original output path
-    output_dir = os.path.dirname(output_file_path)
-    new_output_path = os.path.join(output_dir, new_file_name)
-
+    if save_to_log_folder:
+        new_output_path = os.path.join(log_dir, new_file_name)
+    else:
+        output_dir = os.path.dirname(output_file_path)
+        new_output_path = os.path.join(output_dir, new_file_name)
     return new_output_path, file_name_without_extension
 
 def get_checkppoints_LNs(program_type, task_list, check_points_type='checkpoint_LN_infilling'):
@@ -156,36 +173,37 @@ def main(args, source_code_path, test_cases_path, output_file_path, gen_model, c
     else:
         raise ValueError("Invalid code_gen_mode. Please choose either 'no_afterlines' or 'with_afterlines'.")
     
+    # import pdb;pdb.set_trace()
     if args.show_task_specs:
-        print("##############  Output Path  ##############")
-        print(new_output_path)
-        print("##############  Code Task  ##############")
-        print(file_name_without_extension)
-        print('##############  Interesting Points  ##############')
-        print(interesting_points_L)
-        print("##############  Gen Model  ##############")
-        print(gen_model)
-        print("##############  Code Gen Mode  ##############")
-        print(code_gen_mode)
-        print("##############  Source Code Path  ##############")
-        print(source_code_path)
-        print("##############  Test Cases Path  ##############")
-        print(test_cases_path)
-        print("##############  Eval Ground Truth  ##############")
-        print(eval_ground_truth)
-        print("##############  Code Completion  ##############")
-        print(code_completion)
-        print("##############  Eval Gen Code  ##############")
-        print(eval_gen_code)
-        print("##############  Get Task Labels  ##############")
-        print(get_task_labels)
-        print("##############  Short Range  ##############")
-        print(short_range)
-        print("##############  Medium Range  ##############")
-        print(medium_range)
-        print("##############  Args  ##############")
-        print(args)
-        print('##############  Task Starts Here  ##############')
+        logger.info("##############  Output Path  ##############")
+        logger.info(new_output_path)
+        logger.info("##############  Code Task  ##############")
+        logger.info(file_name_without_extension)
+        logger.info('##############  Interesting Points  ##############')
+        logger.info(interesting_points_L)
+        logger.info("##############  Gen Model  ##############")
+        logger.info(gen_model)
+        logger.info("##############  Code Gen Mode  ##############")
+        logger.info(code_gen_mode)
+        logger.info("##############  Source Code Path  ##############")
+        logger.info(source_code_path)
+        logger.info("##############  Test Cases Path  ##############")
+        logger.info(test_cases_path)
+        logger.info("##############  Eval Ground Truth  ##############")
+        logger.info(eval_ground_truth)
+        logger.info("##############  Code Completion  ##############")
+        logger.info(code_completion)
+        logger.info("##############  Eval Gen Code  ##############")
+        logger.info(eval_gen_code)
+        logger.info("##############  Get Task Labels  ##############")
+        logger.info(get_task_labels)
+        logger.info("##############  Short Range  ##############")
+        logger.info(short_range)
+        logger.info("##############  Medium Range  ##############")
+        logger.info(medium_range)
+        logger.info("##############  Args  ##############")
+        logger.info(args)
+        logger.info('##############  Task Starts Here  ##############')
     if not args.skip_save_csv:
         # Open a CSV file to write the analysis results
         with open(new_output_path, mode='w', newline='') as file:
@@ -254,6 +272,7 @@ def main(args, source_code_path, test_cases_path, output_file_path, gen_model, c
         args.code_gen_timeout = 20*60
         args.eval_timeout = 10*60
         for item in interesting_points_L:
+            # import pdb;pdb.set_trace()
             start_line, end_line, before, between, after,\
             ground_truth_eval_res, ground_truth_pass_ratio,\
             gen_code_dict, post_process_steps, selected_last_post_process_step, gen_code_selected,\
@@ -265,39 +284,36 @@ def main(args, source_code_path, test_cases_path, output_file_path, gen_model, c
                                                                         gen_model, code_gen_mode, short_range, medium_range)
 
 if __name__ == "__main__":
-    try:
-        parser = argparse.ArgumentParser(description='Analyze code dependencies.')
-        parser.add_argument('source_code_path', type=str, help='Path to the source code file.')
-        parser.add_argument('test_cases_path', type=str, help='Path to the test cases file.')
-        parser.add_argument('--output_file_path', type=str, default='./Analysis_Results/complete_output.csv', help='Analysis Results of Code Generation.')
-        parser.add_argument('--short_range', type=int, default=10, help='Distance for Short-Range dependencies.')
-        parser.add_argument('--medium_range', type=int, default=30, help='Distance for Medium-Range dependencies.')
-        parser.add_argument('--gen_model', type=str, default='gpt-3.5-turbo-0125', help='LLM Selection for code generation task.')
-        parser.add_argument('--code_gen_mode', type=str, default='with_afterlines', help='LLM mode for code generation task, such as no_afterlines, with_afterlines, no_instruction.')
-        parser.add_argument('--eval_timeout', type=int, default=5*60, help='Timeout for evaluating the generated code.')
-        parser.add_argument('--code_gen_timeout', type=int, default=3*60, help='Timeout for generating the code.')
-        parser.add_argument('--skip_save_csv', action='store_true', default=False, help='Skip writing to the CSV file')
+    parser = argparse.ArgumentParser(description='Analyze code dependencies.')
+    parser.add_argument('source_code_path', type=str, help='Path to the source code file.')
+    parser.add_argument('test_cases_path', type=str, help='Path to the test cases file.')
+    parser.add_argument('--output_file_path', type=str, help='Analysis Results of Code Generation.',
+                    default='./logging/complete_output.csv',)
+    parser.add_argument('--short_range', type=int, default=10, help='Distance for Short-Range dependencies.')
+    parser.add_argument('--medium_range', type=int, default=30, help='Distance for Medium-Range dependencies.')
+    parser.add_argument('--gen_model', type=str, default='gpt-3.5-turbo-0125', help='LLM Selection for code generation task.')
+    parser.add_argument('--code_gen_mode', type=str, default='with_afterlines', help='LLM mode for code generation task, such as no_afterlines, with_afterlines, no_instruction.')
+    parser.add_argument('--eval_timeout', type=int, default=5*60, help='Timeout for evaluating the generated code.')
+    parser.add_argument('--code_gen_timeout', type=int, default=3*60, help='Timeout for generating the code.')
+    parser.add_argument('--skip_save_csv', action='store_true', default=False, help='Skip writing to the CSV file')
 
-        parser.add_argument('--read_dependency_results', action='store_true', default=False, help='Read dependency results from a CSV file.')
-        parser.add_argument('--save_dependency_results', action='store_true', default=False, help='Save dependency results to a CSV file.')
-        parser.add_argument('--update_def_line', action='store_true', default=True,  help='Update the definition line of variables when value reassign.')
-        parser.add_argument('--show_task_specs', action='store_true', default=True, help='Show the task specs in the output.')
-        
-        parser.add_argument('--eval_ground_truth', action='store_true', default=False, help='Evaluate ground truth.')
-        parser.add_argument('--code_completion', action='store_true', default=True, help='Perform code completion.')
-        parser.add_argument('--eval_gen_code', action='store_true', default=False, help='Evaluate generated code.')
-        parser.add_argument('--get_task_labels', action='store_true', default=True, help='Get task labels.')
-        parser.add_argument("--first_run", action='store_true', default=False, help='Run the first time of a task to generate the dependency labels.')
-        args = parser.parse_args()
-        if args.first_run:
-            args.eval_ground_truth = True
-            args.code_completion = False
-            args.eval_gen_code = False
-            args.get_task_labels = True
+    parser.add_argument('--read_dependency_results', action='store_true', default=False, help='Read dependency results from a CSV file.')
+    parser.add_argument('--save_dependency_results', action='store_true', default=False, help='Save dependency results to a CSV file.')
+    parser.add_argument('--update_def_line', action='store_true', default=True,  help='Update the definition line of variables when value reassign.')
+    parser.add_argument('--show_task_specs', action='store_true', default=True, help='Show the task specs in the output.')
+    
+    parser.add_argument('--eval_ground_truth', action='store_true', default=False, help='Evaluate ground truth.')
+    parser.add_argument('--code_completion', action='store_true', default=True, help='Perform code completion.')
+    parser.add_argument('--eval_gen_code', action='store_true', default=False, help='Evaluate generated code.')
+    parser.add_argument('--get_task_labels', action='store_true', default=True, help='Get task labels.')
+    parser.add_argument("--first_run", action='store_true', default=False, help='Run the first time of a task to generate the dependency labels.')
+    args = parser.parse_args()
+    if args.first_run:
+        args.eval_ground_truth = True
+        args.code_completion = False
+        args.eval_gen_code = False
+        args.get_task_labels = True
 
-        main(args, args.source_code_path, args.test_cases_path, args.output_file_path, args.gen_model, 
-                code_gen_mode = args.code_gen_mode, short_range = args.short_range, medium_range = args.medium_range, 
-                eval_ground_truth=args.eval_ground_truth, code_completion=args.code_completion, eval_gen_code=args.eval_gen_code, get_task_labels=args.get_task_labels)
-    finally:
-        # Kill the process at the end
-        os.kill(pid, signal.SIGTERM)
+    main(args, args.source_code_path, args.test_cases_path, args.output_file_path, args.gen_model, 
+            code_gen_mode = args.code_gen_mode, short_range = args.short_range, medium_range = args.medium_range, 
+            eval_ground_truth=args.eval_ground_truth, code_completion=args.code_completion, eval_gen_code=args.eval_gen_code, get_task_labels=args.get_task_labels)
