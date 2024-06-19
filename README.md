@@ -101,7 +101,9 @@ python analyzer_demo_input_LNs.py <source_code_path> <test_cases_path> --gen_mod
     - `no_afterlines`: For completion tasks, generating code to finish a block without subsequent context. -->
 
 ### Code Generation 
-To run `analyzer_demo_input_LNs.py`, specify paths for your source code and test cases, the generation model, and the code generation mode as follows:
+
+The commands below enable code generation model execution on Java and Python files for both closed-source and open-source models. Specify source code paths, test cases, the model, and the code generation mode as follows:
+
 ### Closed Source Models
 ```python
 python close_source_model_gen.py <source_code_path> <test_cases_path> --gen_model <model_name> --code_gen_mode <mode>
