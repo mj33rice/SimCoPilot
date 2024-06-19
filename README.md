@@ -54,7 +54,7 @@ pip install -r requirements.txt
 ```
 
 <details>
-<summary>OpenAI & Anthropic models setup</summary>
+<summary><b>OpenAI & Anthropic Models Setup</b></summary>
 1. Install the necessary Python packages:
 
 ```bash
@@ -87,18 +87,6 @@ source ~/.bash_profile (or source ~/.zshrc)
 
 
 ## 🏃How to Run
-<!-- ### Code Generation 
-To run `analyzer_demo_input_LNs.py`, specify paths for your source code and test cases, the generation model, and the code generation mode as follows:
-```python
-python analyzer_demo_input_LNs.py <source_code_path> <test_cases_path> --gen_model <model_name> --code_gen_mode <mode>
-```
-
-- `source_code_path`: Path to the Python or Java source code file. Example: `./path/to/source_code.py`
-- `test_cases_path`: Path to the JSON test cases file. Example: `./path/to/test_cases.json`
-- `--gen_model`: Model for code generation, e.g.`gpt-4-turbo`, `deepseek-coder-1.3b-instruct`.
-- `--code_gen_mode`: Specifies the code generation task type:
-    - `with_afterlines`: For infilling tasks with context before and after the target code.
-    - `no_afterlines`: For completion tasks, generating code to finish a block without subsequent context. -->
 
 ### Code Generation 
 
@@ -121,22 +109,35 @@ CUDA_VISIBLE_DEVICES=$gpu_id python -m open_source_model_gen.open_source_code_ge
 ```
 - `$gpu_id`: Specifies the ID of the GPU to use for the code generation.
 - `--gen_model`: Close source model for code generation, e.g.`deepseek-coder-1.3b-instruct`.
-#### Example Command
 
-To run the `analyzer_demo_input_LNs.py` script with specific parameters, you can use the following command:
+<details>
+<summary><b>Example Command</b></summary>
 
+Code generation script with specific parameters, you can use the following command:
+This command specifies the use of the `gpt-4-turbo`models for code generation with the mode set to `with_afterlines` indicating that the generation should consider both the preceding and following context.
 ```python
-python analyzer_demo_input_LNs.py \
+#Close Source Models
+python close_source_model_gen.py \
 ./example_code/Python/simplex_method/simplex_method.py \
 ./example_code/Python/simplex_method/simplex_method.json \
 --read_dependency_results --update_def_line \
 --gen_model gpt-4-turbo \
 --code_gen_mode with_afterlines
 ```
+This command specifies the use of the `deepseek-coder-1.3b-instruct` models for code generation with the mode set to `no_afterlines`, indicating that the generation should only consider both the preceding context.
+```python
+#Open Source Models
+CUDA_VISIBLE_DEVICES=0 python -m open_source_model_gen.open_source_code_gen \
+./example_code/Java/COMP215/A0/Test/FactorizationTester.java \
+./example_code/Java/COMP215/A0/Test/FactorizationTester.json \
+--read_dependency_results --update_def_line \
+--gen_model deepseek-coder-1.3b-instruct \
+--code_gen_mode no_afterlines
+```
+</details>
 
-This command specifies the use of the `gpt-4-turbo` model for code generation with the mode set to `with_afterlines`, indicating that the generation should consider both the preceding and following context.
 <details>
-<summary>Run from the Bash Script</summary>
+<summary><b>Run from the Script</b></summary>
 
 ```bash
 #For Python tasks
