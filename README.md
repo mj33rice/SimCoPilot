@@ -194,10 +194,22 @@ Detailed results comparing the test case pass ratios of various LLMs:
   </tr>
 </table>
 
-*Pass Rates by Program Constructs*
+<p align="center">
+  <em>Pass Rates by Program Constructs</em>
+</p>
 
 - Categorized by distance to the nearest referenced object: [code](helper_functions/horizon_dist.ipynb)
+
+<p align="center">
+    <img src="./figures/group_by_ref_dist.png" alt="Pass Rates by Distance to Referenced Object"/><br>
+    <em>Pass Rates by Distance to Referenced Object</em>
+</p>
 - Categorized by proximity to the nearest comments: [code](helper_functions/get_comment_dist.ipynb)
+
+<p align="center">
+  <img src="./figures/Comment_Dist_v2.png" alt="Pass Rates by Distance to Closest Comment"/><br>
+  <em>Pass Rates by Distance to Closest Comment</em>
+</p>
 
 ## License
 
