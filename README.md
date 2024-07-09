@@ -170,6 +170,32 @@ For detailed examples of code Post-Processing, please refer to the figure below:
 ## 🔍 Stratified Evaluation
 Detailed results comparing the test case pass ratios of various LLMs:  
 - Categorized by models and different programming constructs: [code](helper_functions/code_gen_result_display.ipynb)
+
+<table>
+  <tr>
+    <td align="center">
+      <img src="./figures/python_infill_radar_chart.png" alt="Python Infill" style="width: 250px; height: auto;"/><br>
+      <em>Python Infill</em>
+    </td>
+    <td align="center">
+      <img src="./figures/python_completion_radar_chart.png" alt="Python Compl." style="width: 250px; height: auto;"/><br>
+      <em>Python Completion</em>
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <img src="./figures/java_infill_radar_chart.png" alt="Java Infill" style="width: 250px; height: auto;"/><br>
+      <em>Java Infill</em>
+    </td>
+    <td align="center">
+      <img src="./figures/java_comp_radar_chart.png" alt="Java Completion" style="width: 250px; height: auto;"/><br>
+      <em>Java Completion</em>
+    </td>
+  </tr>
+</table>
+
+*Pass Rates by Program Constructs*
+
 - Categorized by distance to the nearest referenced object: [code](helper_functions/horizon_dist.ipynb)
 - Categorized by proximity to the nearest comments: [code](helper_functions/get_comment_dist.ipynb)
 
