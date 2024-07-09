@@ -171,7 +171,7 @@ For detailed examples of code Post-Processing, please refer to the figure below:
 Detailed results comparing the test case pass ratios of various LLMs:  
 - Categorized by models and different programming constructs: [code](helper_functions/code_gen_result_display.ipynb)
 
-<table>
+<!-- <table>
   <tr>
     <td align="center">
       <img src="./figures/python_infill_radar_chart.png" alt="Python Infill" style="width: 250px; height: auto;"/><br>
@@ -190,6 +190,21 @@ Detailed results comparing the test case pass ratios of various LLMs:
     <td align="center">
       <img src="./figures/java_comp_radar_chart.png" alt="Java Completion" style="width: 250px; height: auto;"/><br>
       <em>Java Completion</em>
+    </td>
+  </tr>
+</table> -->
+
+<table>
+  <tr>
+    <td align="center" colspan="2">
+      <img src="./figures/Python_Construct.png" alt="Python Infill & Completion" style="width: 100%; height: auto;"/><br>
+      <em>Python Infill & Completion</em>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" colspan="2">
+      <img src="./figures/Java_Construct.png" alt="Java Infill & Completion" style="width: 100%; height: auto;"/><br>
+      <em>Java Infill & Completion</em>
     </td>
   </tr>
 </table>
