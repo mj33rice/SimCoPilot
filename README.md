@@ -219,6 +219,7 @@ Detailed results comparing the test case pass ratios of various LLMs:
     <img src="./figures/group_by_ref_dist.png" alt="Pass Rates by Distance to Referenced Object"/><br>
     <em>Pass Rates by Distance to Referenced Object</em>
 </p>
+
 - Categorized by proximity to the nearest comments: [code](helper_functions/get_comment_dist.ipynb)
 
 <p align="center">
