@@ -8,7 +8,7 @@
 
 
 <p align="center">
-  <img src="./figures/SimCoPilot.gif" alt="SimCoPilot Demo"/><br>
+  <img src="./figures/SimCoPilot_hd.gif" alt="SimCoPilot Demo"/><br>
   <em>SimCoPilot Demo</em>
 </p>
 
