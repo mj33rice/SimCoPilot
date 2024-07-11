@@ -7,7 +7,7 @@
 🤔*Question: Can an AI tool correctly complete code snippets like `method body`, `if-statements`, or `for-loops` from real-world projects?*
 
 
-<p align="center">
+<!-- <p align="center">
   <video src="./figures/272e2c10-0f42-48e4-bd7f-e3796927678e.mp4" controls autoplay loop muted>
     Your browser does not support the video tag.
   </video><br>
@@ -21,7 +21,7 @@
     Your browser does not support the video tag.
   </video><br>
   <em>SimCoPilot Demo</em>
-</p> -->
+</p> --> -->
 
 **Why SimCoPilot?**
 - **Real-World Complexity**: Tests AI on complex, real-project tasks, not just concise and standalone programs.
