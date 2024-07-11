@@ -8,7 +8,7 @@
 
 
 <p align="center">
-  <video src="./figures/giphy.mp4" controls autoplay loop muted>
+  <video src="./figures/272e2c10-0f42-48e4-bd7f-e3796927678e.mp4" controls autoplay loop muted>
     Your browser does not support the video tag.
   </video><br>
   <em>SimCoPilot Demo</em>
