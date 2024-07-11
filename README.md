@@ -6,6 +6,14 @@
 ![Figure 1: Workflow for each of the 1,163 programming tasks in SIMCOPILOT.](figures/Workflow.png)
 🤔*Question: Can an AI tool correctly complete code snippets like `method body`, `if-statements`, or `for-loops` from real-world projects?*
 
+
+<p align="center">
+  <video src="./figures/SimCoPilot_Recording_original.mp4" controls autoplay loop muted>
+    Your browser does not support the video tag.
+  </video><br>
+  <em>SimCoPilot Demo</em>
+</p>
+
 **Why SimCoPilot?**
 - **Real-World Complexity**: Tests AI on complex, real-project tasks, not just concise and standalone programs.
 - **Real-Code Understanding**: Focuses on AI's ability to work with actual code, without needing manually annotated problem descriptions to prompt for each task.
@@ -171,28 +179,6 @@ For detailed examples of code Post-Processing, please refer to the figure below:
 Detailed results comparing the test case pass ratios of various LLMs:  
 - Categorized by models and different programming constructs: [code](helper_functions/code_gen_result_display.ipynb)
 
-<!-- <table>
-  <tr>
-    <td align="center">
-      <img src="./figures/python_infill_radar_chart.png" alt="Python Infill" style="width: 250px; height: auto;"/><br>
-      <em>Python Infill</em>
-    </td>
-    <td align="center">
-      <img src="./figures/python_completion_radar_chart.png" alt="Python Compl." style="width: 250px; height: auto;"/><br>
-      <em>Python Completion</em>
-    </td>
-  </tr>
-  <tr>
-    <td align="center">
-      <img src="./figures/java_infill_radar_chart.png" alt="Java Infill" style="width: 250px; height: auto;"/><br>
-      <em>Java Infill</em>
-    </td>
-    <td align="center">
-      <img src="./figures/java_comp_radar_chart.png" alt="Java Completion" style="width: 250px; height: auto;"/><br>
-      <em>Java Completion</em>
-    </td>
-  </tr>
-</table> -->
 
 <table>
   <tr>
