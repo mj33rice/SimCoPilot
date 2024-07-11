@@ -17,7 +17,7 @@
 <p align="center">
   <video controls autoplay loop muted>
     <source src="./figures/SimCoPilot_Recording_original.mp4" type="video/mp4">
-    <!-- <source src="./figures/SimCoPilot_Recording_original.webm" type="video/webm"> -->
+    <source src="./figures/SimCoPilot_Recording_original_web.mp4" type="video/webm">
     Your browser does not support the video tag.
   </video><br>
   <em>SimCoPilot Demo</em>
