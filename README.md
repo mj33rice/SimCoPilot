@@ -212,6 +212,21 @@ Detailed results comparing the test case pass ratios of various LLMs:
   <em>Pass Rates by Distance to Closest Comment</em>
 </p>
 
+- Error Analysis
+<p align="center">
+  <img src="./figures/v2_cumulative_output_by_category.png" alt="Error Analysis"/><br>
+  <em>Cumulative Output by Category</em>
+</p>
+
+- **Model Size vs. Error Rates:** Larger or more sophisticated models generally have fewer errors but don't consistently show lower error rates across all categories.
+- **Common Errors:** Compilation and syntax errors are prevalent across most LLMs, indicating challenges in understanding code structure or syntax in code generation tasks.
+
+These observations highlight that while model size often correlates with performance, specific error types reveal unique strengths and weaknesses in each model's understanding of code structure and syntax.
+
+## Contact Us 📧
+
+For any inquiries or further information, please feel free to reach out to us at [mj33@rice.edu](mailto:mj33@rice.edu).
+
 ## License
 
 The data is shared under the [CC BY-NC-ND 4.0](https://creativecommons.org/licenses/by-nc-nd/4.0/) and code is licensed under MIT License.
