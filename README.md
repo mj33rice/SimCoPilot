@@ -223,7 +223,7 @@ Detailed results comparing the test case pass ratios of various LLMs:
 
 These observations highlight that while model size often correlates with performance, specific error types reveal unique strengths and weaknesses in each model's understanding of code structure and syntax.
 
-## Contact Us 📧
+## 📧 Contact Us 
 
 For any inquiries or further information, please feel free to reach out to us at [mj33@rice.edu](mailto:mj33@rice.edu).
 
